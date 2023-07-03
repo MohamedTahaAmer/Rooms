@@ -10,6 +10,11 @@ import { Icons } from './Icons'
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+// >(0:43) 
+  // - in here we set the type of the "UserAuthForm" to be a react function component "FC"
+  // - this "FC" takes a generic type, and in here using "<UserAuthFormProps>" we are setting the type of that FC's generic type that it recieves and assign it as a type for it's parameters
+  // - so here the parametrs that's passed to thie "UserAuthForm"  should be of type "UserAuthFormProps"
+  //  https://github.com/MohamedTahaAmer/CodeMDs/blob/main/TS/callingFunctionThatUsesGenericTypes.md
 const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = React.useState<boolean>(false)

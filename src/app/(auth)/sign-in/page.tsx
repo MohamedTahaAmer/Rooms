@@ -11,6 +11,7 @@ const page: FC = () => {
       <div className='h-full max-w-2xl mx-auto flex flex-col items-center justify-center gap-20'>
         <Link
           href='/'
+          // >(0:34)
           className={cn(
             buttonVariants({ variant: 'ghost' }),
             'self-start -mt-20'
