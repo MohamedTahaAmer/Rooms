@@ -59,6 +59,8 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           className='cursor-pointer'
 
           // >(1:35) note that it's onSelect not onClick
+            // - I don't whether this is the same event or not, but this example is kinda cool
+              // https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event
           onSelect={(event) => {
             event.preventDefault()
             signOut({

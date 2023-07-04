@@ -15,6 +15,7 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  // >(1:41) this authModal is passed to thie RootLayout by default as we creaed an @ route in the same level as this layout
   authModal,
 }: {
   children: React.ReactNode
@@ -29,6 +30,8 @@ export default function RootLayout({
       )}>
       <body className='min-h-screen pt-12 bg-slate-50 antialiased'>
         <Providers>
+
+          {/* // >(1:0) this comment below is to disaple TS complaint that the Navbar is a server component */}
           {/* @ts-expect-error Server Component */}
           <Navbar />
           {authModal}

@@ -4,6 +4,7 @@ import { FC } from 'react'
 
 interface pageProps {}
 
+// >(1:52) although he is removing this TS types in the video, but they stell here
 const page: FC<pageProps> = ({}) => {
   return (
     <div className='fixed inset-0 bg-zinc-900/20 z-10'>

@@ -2,7 +2,7 @@
 ```js
 // >(0:10) Prisam Setup
 // >(0:10) NextAuth model for prisma
-// >(0:11) shadcn ui library for tailwind
+// >(0:11) shadcn-ui library for tailwind
 // >(0:12) website called usehooks to get custom react hooks like use-on-click-outside.ts 
 // >(0:12) setting prisma client depending on the app state, proudeion?, cashed? 
 // >(0:12) boiler plate code in the utils files to deal with time and dates 
@@ -10,6 +10,9 @@
 // >(0:26) lucide-react
 // >(0:28) class-variance-authority, he used it in the ui/button and did alot of code to get a simple looking signIn button
 // >(1:00) Prisma WDS
+// >(1:19) by turning a component into an async one, then it's a server component
+  // - aren't all next components server ones untill we 'use client'
+// >(1:43) Route intersection in next.js
 
 ```
 

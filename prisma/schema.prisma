@@ -11,6 +11,7 @@ datasource db {
   relationMode = "prisma"
 }
 
+// >(2:02)
 enum VoteType {
   UP
   DOWN
@@ -63,6 +64,7 @@ model User {
   CommentVote CommentVote[]
 }
 
+// >(1:55)
 model Subreddit {
   id        String   @id @default(cuid())
   name      String   @unique
@@ -92,10 +94,13 @@ model Post {
   content     Json?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
+
   subreddit   Subreddit @relation(fields: [subredditId], references: [id])
   subredditId String
+
   comments    Comment[] 
   votes       Vote[]
 }
@@ -127,6 +132,8 @@ model Vote {
   @@id([userId, postId])
 }
 
+// >(2:01)
+// - I think this database modeling here is complex and it's ok to take me about a week or so to fully understand and test it correctley
 model CommentVote {
   user      User     @relation(fields: [userId], references: [id])
   userId    String
