@@ -1,3 +1,4 @@
+// >(2:28) introducing zod
 import { z } from 'zod'
 
 export const SubredditValidator = z.object({

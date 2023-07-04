@@ -13,6 +13,9 @@
 // >(1:19) by turning a component into an async one, then it's a server component
   // - aren't all next components server ones untill we 'use client'
 // >(1:43) Route intersection in next.js
+// >(2:10) review css grid and flex, and the corosponding classes in tailwind
+// >(2:12) css order property in flex and 
+// >(2:20) css posetions
 
 ```
 

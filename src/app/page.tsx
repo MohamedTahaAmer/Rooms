@@ -12,6 +12,7 @@ export default async function Home() {
   const session = await getAuthSession()
 
   return (
+    // >(2:10)
     <>
       <h1 className='font-bold text-3xl md:text-4xl'>Your feed</h1>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
@@ -35,6 +36,7 @@ export default async function Home() {
             </div>
 
             <Link
+            // >(2:14) using buttonVariants with html elements
               className={buttonVariants({
                 className: 'w-full mt-4 mb-6',
               })}

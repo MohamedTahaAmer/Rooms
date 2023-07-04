@@ -15,6 +15,7 @@ const Page = () => {
   const [input, setInput] = useState<string>('')
   const { loginToast } = useCustomToasts()
 
+  // >(2:25) our first intro to ReactQuery
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: async () => {
       const payload: CreateSubredditPayload = {
@@ -59,6 +60,7 @@ const Page = () => {
   })
 
   return (
+    // >(2:17)
     <div className='container flex items-center h-full max-w-3xl mx-auto'>
       <div className='relative bg-white w-full h-fit p-4 rounded-lg space-y-6'>
         <div className='flex justify-between items-center'>
@@ -88,6 +90,7 @@ const Page = () => {
           <Button
             disabled={isLoading}
             variant='subtle'
+            // >(2:24)
             onClick={() => router.back()}>
             Cancel
           </Button>
