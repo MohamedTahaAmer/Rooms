@@ -13,12 +13,14 @@ import {
 } from '@/components/ui/DropdownMenu'
 import { UserAvatar } from '@/components/UserAvatar'
 
+// >(1:22) wait he my change his code to this later
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email'>
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
   return (
+    // >(1:22) getting the dropdownmenu from shadcn-ui add dropdown
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
@@ -30,14 +32,17 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-1 leading-none'>
             {user.name && <p className='font-medium'>{user.name}</p>}
-            {user.email && (
+            {user.email && (// >(1:31)
               <p className='w-[200px] truncate text-sm text-muted-foreground'>
                 {user.email}
               </p>
             )}
           </div>
         </div>
+        {/* // >(1:32) this is just a bottom-margin  */}
         <DropdownMenuSeparator />
+
+
         <DropdownMenuItem asChild>
           <Link href='/'>Feed</Link>
         </DropdownMenuItem>
@@ -52,9 +57,12 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className='cursor-pointer'
+
+          // >(1:35) note that it's onSelect not onClick
           onSelect={(event) => {
             event.preventDefault()
             signOut({
+              // >(1:36)
               callbackUrl: `${window.location.origin}/sign-in`,
             })
           }}>

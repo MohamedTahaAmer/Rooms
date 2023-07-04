@@ -9,6 +9,7 @@
 // >(0:16) tailwind antialiased class
 // >(0:26) lucide-react
 // >(0:28) class-variance-authority, he used it in the ui/button and did alot of code to get a simple looking signIn button
+// >(1:00) Prisma WDS
 
 ```
 
@@ -17,6 +18,13 @@
 // - how to clone a single branch from a github repo
 `git clone -b starter-code https://github.com/joschan21/breadit.git breadit-2`
   //  in here we are clonnig only the branch called starter-code from this rebo and renaming it to breadit-2
+
+// >(1:15)
+// - pushing our prisma schema to our db on planet scale
+  `npm prisma db pushin`
+
+// - generate prisma client code
+  `npm prisma generate`
 ```
 
 # Notes

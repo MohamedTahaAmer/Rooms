@@ -37,6 +37,7 @@ export default function RootLayout({
             {children}
           </div>
         </Providers>
+        {/* // >(0:56) provideing the toaster for all the toasts to work */}
         <Toaster />
       </body>
     </html>

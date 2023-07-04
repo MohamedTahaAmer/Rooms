@@ -1,11 +1,12 @@
 import { db } from '@/lib/db'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { PrismaAdapter } from '@next-auth/prisma-adapter' // >(1:02)
 import { nanoid } from 'nanoid'
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
+  // >(1:01)
   session: {
     strategy: 'jwt',
   },
@@ -31,6 +32,7 @@ export const authOptions: NextAuthOptions = {
       return session
     },
 
+    // >(1:10)
     async jwt({ token, user }) {
       const dbUser = await db.user.findFirst({
         where: {
@@ -68,4 +70,5 @@ export const authOptions: NextAuthOptions = {
   },
 }
 
+// >(1:18) i think that this should be used by the components to obtain the users session
 export const getAuthSession = () => getServerSession(authOptions)

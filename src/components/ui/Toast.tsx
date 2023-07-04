@@ -125,3 +125,5 @@ export {
   ToastClose,
   ToastAction,
 }
+
+// >(0:53) he by hand changed the files structure and names of the files set by the npm package.

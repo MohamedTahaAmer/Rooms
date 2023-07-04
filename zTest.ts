@@ -5,3 +5,5 @@ function identity<Type>(arg: Type): Type {
 
 let output = identity<string>("myString");
 output
+
+

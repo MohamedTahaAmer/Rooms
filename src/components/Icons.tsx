@@ -2,6 +2,7 @@ import { LucideProps, MessageSquare, User } from 'lucide-react'
 
 // >(0:26)
 export const Icons = {
+  // >(1:29) this User is just an svg that's coming from lucide-react
   user: User,
   logo: (props: LucideProps) => (
     <svg {...props} viewBox='0 0 497 497'>

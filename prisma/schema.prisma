@@ -52,6 +52,7 @@ model User {
   subscriptions     Subscription[]
   votes             Vote[]
 
+// >(1:13)
   username String? @unique
 
   image       String?
