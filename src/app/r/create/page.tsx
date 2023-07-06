@@ -16,8 +16,12 @@ const Page = () => {
   const { loginToast } = useCustomToasts()
 
   // >(2:25) our first intro to ReactQuery
+    // getting the mutate function as createCommunity
+  // >(2:34) to use this reactQuery we neep to provide the context for it
   const { mutate: createCommunity, isLoading } = useMutation({
+    // thie mutationFn is returned from useMutation hook, through the mutate funtion
     mutationFn: async () => {
+      // >(2:30)
       const payload: CreateSubredditPayload = {
         name: input,
       }
@@ -26,6 +30,7 @@ const Page = () => {
       return data as string
     },
     onError: (err) => {
+      // >(2:47)
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           return toast({
@@ -44,10 +49,12 @@ const Page = () => {
         }
 
         if (err.response?.status === 401) {
+          // >(2:55) it's UX "user experiance"
           return loginToast()
         }
       }
 
+      // >(2:55) catching all the errors that aren't axios
       toast({
         title: 'There was an error.',
         description: 'Could not create subreddit.',
@@ -55,6 +62,8 @@ const Page = () => {
       })
     },
     onSuccess: (data) => {
+      // >(2:57) this is how to redirect the user to a certain route
+      // - you can use it onClick on a Link component instead of href, but i think won't let you Link without an href
       router.push(`/r/${data}`)
     },
   })

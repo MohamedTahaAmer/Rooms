@@ -3,8 +3,10 @@ import { db } from '@/lib/db'
 import { SubredditSubscriptionValidator } from '@/lib/validators/subreddit'
 import { z } from 'zod'
 
+// >(2:38)
 export async function POST(req: Request) {
   try {
+    // - first authentication
     const session = await getAuthSession()
 
     if (!session?.user) {
@@ -38,6 +40,7 @@ export async function POST(req: Request) {
 
     return new Response(subredditId)
   } catch (error) {
+    // >(2:44)
     (error)
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 400 })

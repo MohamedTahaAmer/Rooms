@@ -29,6 +29,7 @@ export default function RootLayout({
         inter.className
       )}>
       <body className='min-h-screen pt-12 bg-slate-50 antialiased'>
+        {/* // >(2:36) */}
         <Providers>
 
           {/* // >(1:0) this comment below is to disaple TS complaint that the Navbar is a server component */}

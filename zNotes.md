@@ -4,7 +4,7 @@
 // >(0:10) NextAuth model for prisma
 // >(0:11) shadcn-ui library for tailwind
 // >(0:12) website called usehooks to get custom react hooks like use-on-click-outside.ts 
-// >(0:12) setting prisma client depending on the app state, proudeion?, cashed? 
+// >(0:12) setting prisma client depending on the app state, prouduction?, cashed? 
 // >(0:12) boiler plate code in the utils files to deal with time and dates 
 // >(0:16) tailwind antialiased class
 // >(0:26) lucide-react
@@ -16,6 +16,9 @@
 // >(2:10) review css grid and flex, and the corosponding classes in tailwind
 // >(2:12) css order property in flex and 
 // >(2:20) css posetions
+// >(2:30) zod
+  // https://www.youtube.com/results?search_query=wds+ts
+  // https://www.youtube.com/results?search_query=npm+zod
 
 ```
 
