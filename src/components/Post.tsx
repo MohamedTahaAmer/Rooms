@@ -44,6 +44,7 @@ const Post: FC<PostProps> = ({
             {subredditName ? (
               <>
                 <a
+                // >(5:29) using a tag not a next.js Link, to get hard refresh on click
                   className='underline text-zinc-900 text-sm underline-offset-2'
                   href={`/r/${subredditName}`}>
                   r/{subredditName}
@@ -52,8 +53,12 @@ const Post: FC<PostProps> = ({
               </>
             ) : null}
             <span>Posted by u/{post.author.username}</span>{' '}
+
+            {/* // >(5:33) */}
             {formatTimeToNow(new Date(post.createdAt))}
           </div>
+
+          {/* // >(5:34) we are doing a hard refresh to make sure that we get the latest comments on the post */}
           <a href={`/r/${subredditName}/post/${post.id}`}>
             <h1 className='text-lg font-semibold py-2 leading-6 text-gray-900'>
               {post.title}
@@ -63,8 +68,10 @@ const Post: FC<PostProps> = ({
           <div
             className='relative text-sm max-h-40 w-full overflow-clip'
             ref={pRef}>
+              {/* // >(5:41) */}
             <EditorOutput content={post.content} />
             {pRef.current?.clientHeight === 160 ? (
+              // >(5:35) this pRef is used to display conditional styling depending on the post height
               // blur bottom if content is too long
               <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent'></div>
             ) : null}
