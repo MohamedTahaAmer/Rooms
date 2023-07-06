@@ -22,6 +22,7 @@ const page = async ({ params }: pageProps) => {
     <div className='flex flex-col items-start gap-6'>
       {/* heading */}
       <div className='border-b border-gray-200 pb-5'>
+        {/* // >(3:59) this -m-2 means margen of nagative .5rem */}
         <div className='-ml-2 -mt-2 flex flex-wrap items-baseline'>
           <h3 className='ml-2 mt-2 text-base font-semibold leading-6 text-gray-900'>
             Create Post
@@ -36,6 +37,7 @@ const page = async ({ params }: pageProps) => {
       <Editor subredditId={subreddit.id} />
 
       <div className='w-full flex justify-end'>
+        {/* // >(4:03) HTML lesson, if you have a button with form='str' attripute then it will submit all the forms with id='str'  */}
         <Button type='submit' className='w-full' form='subreddit-post-form'>
           Post
         </Button>

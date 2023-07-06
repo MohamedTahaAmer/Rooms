@@ -19,6 +19,8 @@
 // >(2:30) zod
   // https://www.youtube.com/results?search_query=wds+ts
   // https://www.youtube.com/results?search_query=npm+zod
+// >(4:41) react-hook-form with zod
+  // https://www.youtube.com/results?search_query=react+hook+form
 
 ```
 
