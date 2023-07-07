@@ -47,4 +47,6 @@
 
 // >(0:31) all the (routes) inside these () aren't matched by next.js so we can use them for organiztional perposes 
   // https://www.youtube.com/watch?v=k2IQ-CcE7pk&pp=ygUPam9zaCBuZXh0IHJvdXRz
+
+// >(6:25) creating account on upstash
 ```

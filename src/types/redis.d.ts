@@ -1,3 +1,4 @@
+// >(6:20)
 import { Vote } from '@prisma/client'
 
 export type CachedPost = {

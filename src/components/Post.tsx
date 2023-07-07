@@ -8,6 +8,7 @@ import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import PostVoteClient from './post-vote/PostVoteClient'
 
+// >(6:01) this TS Pick is to get a single type from an interface
 type PartialVote = Pick<Vote, 'type'>
 
 interface PostProps {
@@ -70,8 +71,10 @@ const Post: FC<PostProps> = ({
             ref={pRef}>
               {/* // >(5:41) */}
             <EditorOutput content={post.content} />
+
+            {/* // - instead of using the ternary operator we could have just used && */}
             {pRef.current?.clientHeight === 160 ? (
-              // >(5:35) this pRef is used to display conditional styling depending on the post height
+              // >(5:35) this pRef is used to display conditional styling div depending on the post height
               // blur bottom if content is too long
               <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent'></div>
             ) : null}

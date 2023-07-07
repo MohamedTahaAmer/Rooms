@@ -1,3 +1,4 @@
+// >(6:27) setting redis up
 import { Redis } from '@upstash/redis'
 
 export const redis = new Redis({

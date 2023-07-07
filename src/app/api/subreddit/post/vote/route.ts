@@ -7,10 +7,12 @@ import { z } from 'zod'
 
 const CACHE_AFTER_UPVOTES = 1
 
+// >(6:10)
 export async function PATCH(req: Request) {
   try {
     const body = await req.json()
 
+    // >(6:11) applying our custom check or validator on the users sent data, thie validator was used in creating the payload on the client side also
     const { postId, voteType } = PostVoteValidator.parse(body)
 
     const session = await getAuthSession()
@@ -19,6 +21,7 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 })
     }
 
+    // >(6:12) the logic of this endpoint
     // check if user has already voted on this post
     const existingVote = await db.vote.findFirst({
       where: {
@@ -41,8 +44,10 @@ export async function PATCH(req: Request) {
       return new Response('Post not found', { status: 404 })
     }
 
+    // >(6:15)
     if (existingVote) {
       // if vote type is the same as existing vote, delete the vote
+      // - if the vote state was up and the user re-cliced, then we should remove this up vote
       if (existingVote.type === voteType) {
         await db.vote.delete({
           where: {
@@ -76,7 +81,9 @@ export async function PATCH(req: Request) {
         return new Response('OK')
       }
 
-      // if vote type is different, update the vote
+      // if vote type is different, update the vote // >(6:17)
+      // - if the vote was up and the user clicked down, then we should toggle the vote.
+      // - How will this prisma query acheive that?
       await db.vote.update({
         where: {
           userId_postId: {
@@ -89,7 +96,7 @@ export async function PATCH(req: Request) {
         },
       })
 
-      // Recount the votes
+      // Recount the votesAmt   // >(6:18)
       const votesAmt = post.votes.reduce((acc, vote) => {
         if (vote.type === 'UP') return acc + 1
         if (vote.type === 'DOWN') return acc - 1
@@ -112,7 +119,8 @@ export async function PATCH(req: Request) {
       return new Response('OK')
     }
 
-    // if no existing vote, create a new vote
+    // >(6:29)
+    // - if no existing vote, create a new vote
     await db.vote.create({
       data: {
         type: voteType,
@@ -121,6 +129,7 @@ export async function PATCH(req: Request) {
       },
     })
 
+    // >(6:29) there is alot of repetetion, on getting the post count and cashing it, -> move it to a function
     // Recount the votes
     const votesAmt = post.votes.reduce((acc, vote) => {
       if (vote.type === 'UP') return acc + 1
@@ -138,6 +147,7 @@ export async function PATCH(req: Request) {
         createdAt: post.createdAt,
       }
 
+      // >(6:27)
       await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
     }
 

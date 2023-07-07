@@ -1,3 +1,4 @@
+// >(6:06)
 import { z } from 'zod'
 
 export const PostVoteValidator = z.object({
