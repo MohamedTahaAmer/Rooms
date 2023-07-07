@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/DropdownMenu'
 import { UserAvatar } from '@/components/UserAvatar'
 
-// >(1:22) wait he my change his code to this later
+// >(1:22) wait he may change his code to this later
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email'>
 }

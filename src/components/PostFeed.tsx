@@ -46,6 +46,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
     }
   )
 
+  // >(6:54)
   useEffect(() => {
     if (entry?.isIntersecting) {
       fetchNextPage() // Load more posts when the last post comes into view

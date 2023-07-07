@@ -29,6 +29,7 @@ interface PostCommentProps {
   postId: string
 }
 
+// >(7:45)
 const PostComment: FC<PostCommentProps> = ({
   comment,
   votesAmt,

@@ -49,4 +49,5 @@
   // https://www.youtube.com/watch?v=k2IQ-CcE7pk&pp=ygUPam9zaCBuZXh0IHJvdXRz
 
 // >(6:25) creating account on upstash
+// >(7:50) {/* @ts-expect-error Server Component */} this is to ignore TS error when importing server components
 ```

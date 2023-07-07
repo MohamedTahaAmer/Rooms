@@ -1,4 +1,4 @@
-'use client'
+'use client'  // >(7:34) editorjs-react-renderer depends on the DOM so it must be in a client component
 
 import CustomCodeRenderer from '@/components/renderers/CustomCodeRenderer'
 import CustomImageRenderer from '@/components/renderers/CustomImageRenderer'
@@ -32,7 +32,8 @@ const style = {
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
   return (
     // >(5:45) strange how the error ommit comment itself is giving us an error
-    // @ts-expect-error 
+    // -diff
+    // // @ts-expect-error 
     <Output
       style={style}
       className='text-sm'

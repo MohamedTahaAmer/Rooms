@@ -18,6 +18,8 @@ export default async function Home() {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6'>
         {/* @ts-expect-error server component */}
         {session ? <CustomFeed /> : <GeneralFeed />}
+        {/* // >(6:58) // >(7:01) he is saying that TS doesn't work will with server components now so he added this ignore commit,
+        // - this looks like the only way to import server components without TS complaining*/}
 
         {/* subreddit info */}
         <div className='overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last'>

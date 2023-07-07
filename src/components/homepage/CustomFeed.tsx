@@ -4,6 +4,7 @@ import { db } from '@/lib/db'
 import PostFeed from '../PostFeed'
 import { notFound } from 'next/navigation'
 
+// >(7:02)
 const CustomFeed = async () => {
   const session = await getAuthSession()
 

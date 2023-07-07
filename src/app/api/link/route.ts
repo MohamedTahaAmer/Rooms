@@ -18,7 +18,7 @@ export async function GET(req: Request) {
   const titleMatch = res.data.match(/<title>(.*?)<\/title>/)
   const title = titleMatch ? titleMatch[1] : ''
 
-  // >(4:24) this (.*?) is a good regex hack, which matches any think between your strings
+  // >(4:24) this (.*?) is a good regex hack, which matches any thing between your strings, and will also match the stings them selves
   const descriptionMatch = res.data.match(
     /<meta name="description" content="(.*?)"/
   )

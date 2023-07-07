@@ -63,6 +63,8 @@ const PostVoteClient = ({
         variant: "destructive",
       });
     },
+    
+    // >(6:38) optimistic update
     onMutate: (type: VoteType) => {
       if (currentVote === type) {
         // User is voting the same way again, so remove their vote

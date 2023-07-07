@@ -12,6 +12,7 @@ import { FC, useState } from 'react'
 import { Label } from '@/components/ui/Label'
 import { Textarea } from '@/components/ui/Textarea'
 
+// >(7:53)
 interface CreateCommentProps {
   postId: string
   replyToId?: string

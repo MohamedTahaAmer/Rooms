@@ -20,9 +20,12 @@ interface CommentsSectionProps {
   comments: ExtendedComment[]
 }
 
+// >(7:38)
 const CommentsSection = async ({ postId }: CommentsSectionProps) => {
   const session = await getAuthSession()
 
+  // >(7:40) he dicieded not to have nested comments like in the actual reddit, but he will implement a top comment and replies to that comments, like the case in youtube
+    // ToDo: implement the actual reddit nesting, you will find how to do it in WDS
   const comments = await db.comment.findMany({
     where: {
       postId: postId,
@@ -32,7 +35,7 @@ const CommentsSection = async ({ postId }: CommentsSectionProps) => {
       author: true,
       votes: true,
       replies: {
-        // first level replies
+        // first level replies only
         include: {
           author: true,
           votes: true,
