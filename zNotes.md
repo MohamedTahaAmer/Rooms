@@ -36,6 +36,9 @@
 
 // - generate prisma client code
   `npx prisma generate`
+
+// - how to start prisma studio 
+  `npx prisma studio`
 ```
 
 # Notes

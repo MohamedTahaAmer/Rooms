@@ -1,8 +1,12 @@
 import { Icons } from "@/components/Icons";
 import UserAuthForm from "@/components/UserAuthForm";
+import { getProviders } from "next-auth/react";
 import Link from "next/link";
+import CredentialsForm from "./CredentialsForm";
 
-const SignIn = () => {
+const SignIn = async () => {
+  const providers = await getProviders();
+
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
       <div className="flex flex-col space-y-2 text-center">
@@ -16,7 +20,14 @@ const SignIn = () => {
       {/* 
       // >(0:41) if you want to add activity in a server componet like a button that listens to onClick then you can make a new client component for that button and then import it here inside thsi server component
       */}
-      <UserAuthForm />
+      <CredentialsForm />
+
+      {providers &&
+        true &&
+        Object.values(providers).filter(provider=>provider.type === 'oauth').map((provider) => (
+          <UserAuthForm key={provider.id} provider={provider} />
+        ))}
+
       <p className="px-8 text-center text-sm text-muted-foreground">
         New to Breaddit?{" "}
         <Link

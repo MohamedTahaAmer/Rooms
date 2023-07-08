@@ -72,6 +72,10 @@ export const authOptions: NextAuthOptions = {
     redirect() {
       return "/";
     },
+    async signIn({ user }) {
+      user;
+      return true;
+    },
   },
 };
 
