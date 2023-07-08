@@ -32,10 +32,10 @@
 
 // >(1:15)
 // - pushing our prisma schema to our db on planet scale
-  `npm prisma db pushin`
+  `npx prisma db push`
 
 // - generate prisma client code
-  `npm prisma generate`
+  `npx prisma generate`
 ```
 
 # Notes

@@ -1,5 +1,4 @@
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
+import { getAuthSession } from "@/lib/auth";
 import Link from "next/link";
 import { Icons } from "./Icons";
 import { buttonVariants } from "./ui/Button";
@@ -10,7 +9,7 @@ import SearchBar from "./SearchBar";
 // - aren't all next components server ones untill we 'use client'
 const Navbar = async () => {
   // >(1:19) although he created "getAuthSession" in the lib/auth file but he still imported the authOptions, and getServerSession to get the current user's session
-  const session = await getServerSession(authOptions);
+  const session = await getAuthSession();
   return (
     <div className=" mx-auto fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
       <div className="container max-w-7xl h-full  flex items-center justify-between gap-2">

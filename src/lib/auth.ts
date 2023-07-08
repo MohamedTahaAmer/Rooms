@@ -1,35 +1,40 @@
-import { db } from '@/lib/db'
-import { PrismaAdapter } from '@next-auth/prisma-adapter' // >(1:02)
-import { nanoid } from 'nanoid'
-import { NextAuthOptions, getServerSession } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
+import { db } from "@/lib/db";
+import { PrismaAdapter } from "@next-auth/prisma-adapter"; // >(1:02)
+import { nanoid } from "nanoid";
+import { NextAuthOptions, getServerSession } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   // >(1:01)
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   pages: {
-    signIn: '/sign-in',
+    signIn: "/sign-in",
   },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
+    }),
   ],
   callbacks: {
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.id
-        session.user.name = token.name
-        session.user.email = token.email
-        session.user.image = token.picture
-        session.user.username = token.username
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.username = token.username;
       }
 
-      return session
+      return session;
     },
 
     // >(1:10)
@@ -38,11 +43,11 @@ export const authOptions: NextAuthOptions = {
         where: {
           email: token.email,
         },
-      })
+      });
 
       if (!dbUser) {
-        token.id = user!.id
-        return token
+        token.id = user!.id;
+        return token;
       }
 
       if (!dbUser.username) {
@@ -53,7 +58,7 @@ export const authOptions: NextAuthOptions = {
           data: {
             username: nanoid(10),
           },
-        })
+        });
       }
 
       return {
@@ -62,13 +67,13 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
         username: dbUser.username,
-      }
+      };
     },
     redirect() {
-      return '/'
+      return "/";
     },
   },
-}
+};
 
 // >(1:18) i think that this should be used by the components to obtain the users session
-export const getAuthSession = () => getServerSession(authOptions)
+export const getAuthSession = () => getServerSession(authOptions);

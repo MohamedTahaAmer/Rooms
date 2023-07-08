@@ -144,3 +144,12 @@ model CommentVote {
 
   @@id([userId, commentId])
 }
+
+// - this model is added to allow for user-login with credentials
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

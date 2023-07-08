@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  // >(1:41) this authModal is passed to thie RootLayout by default as we creaed an @ route in the same level as this layout
+  // >(1:41) this authModal is passed to the RootLayout by default as we created an @ route in the same level as this layout
   authModal,
 }: {
   children: React.ReactNode
