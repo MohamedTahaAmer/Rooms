@@ -23,7 +23,7 @@ const UserAuthForm = ({ provider }: { provider: any }) => {
       // >(0:50) these components/ui are made by npm packages during installing them
       toast({
         title: "Error",
-        description: "There was an error logging in with Google",
+        description: `There was an error logging in with ${provider.name}.`,
         variant: "destructive",
       });
     } finally {
@@ -35,8 +35,7 @@ const UserAuthForm = ({ provider }: { provider: any }) => {
     const googleIcon = <Icons.google className="h-4 w-4 mr-2 icon" />;
 
     const icon =
-      name === "Google" ? googleIcon : 
-      name === "GitHub" ? githubIcon : null;
+      name === "Google" ? googleIcon : name === "GitHub" ? githubIcon : null;
     return icon;
   };
 
