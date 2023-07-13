@@ -25,6 +25,7 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
   })
   // >(5:18) one of the few times we will fetch the session, on the client, although we could have passed it from the parents instead
   const { data: session } = useSession()
+  console.log('Expression')
 
   const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ['infinite-query'],

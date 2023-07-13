@@ -6,6 +6,8 @@ import CredentialsForm from "./CredentialsForm";
 
 const SignIn = async () => {
   const providers = await getProviders();
+  const job:'sign-in'= 'sign-in';
+
 
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
@@ -20,7 +22,7 @@ const SignIn = async () => {
       {/* 
       // >(0:41) if you want to add activity in a server componet like a button that listens to onClick then you can make a new client component for that button and then import it here inside thsi server component
       */}
-      <CredentialsForm />
+      <CredentialsForm job={job}/>
 
       {providers &&
         true &&

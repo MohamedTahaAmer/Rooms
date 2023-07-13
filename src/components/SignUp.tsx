@@ -2,9 +2,11 @@ import { Icons } from "@/components/Icons";
 import UserAuthForm from "@/components/UserAuthForm";
 import { getProviders } from "next-auth/react";
 import Link from "next/link";
+import CredentialsForm from "./CredentialsForm";
 
 const SignUp = async () => {
   const providers = await getProviders();
+  const job: "sign-up" = "sign-up";
 
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
@@ -17,11 +19,14 @@ const SignUp = async () => {
         </p>
       </div>
 
+      <CredentialsForm job={job} />
       {providers &&
         true &&
-        Object.values(providers).filter(provider=>provider.type === 'oauth').map((provider) => (
-          <UserAuthForm key={provider.id} provider={provider} />
-        ))}
+        Object.values(providers)
+          .filter((provider) => provider.type === "oauth")
+          .map((provider) => (
+            <UserAuthForm key={provider.id} provider={provider} />
+          ))}
 
       <p className="px-8 text-center text-sm text-muted-foreground">
         Already a Breadditor?{" "}
