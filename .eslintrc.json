@@ -1,8 +1,7 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    // - this is an eslint rule that prevents us from console logs behind after finishing developemtn or depuging, as it will throw error at any console.log()
-    // "no-console": ["warn"],
+    "no-console": ["warn"],
     "no-unused-vars": ["warn"]
   }
 }

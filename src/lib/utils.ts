@@ -1,12 +1,10 @@
-import { ClassValue, clsx } from 'clsx' // >(0:16)
-import { twMerge } from 'tailwind-merge' // >(0:16)
+import { ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 import { formatDistanceToNowStrict } from 'date-fns'
 import locale from 'date-fns/locale/en-US'
 
-// >(0:34) this cn is used to compine dynamic classes with our string classes
-  // https://github.com/MohamedTahaAmer/CodeMDs/blob/main/Next/01-cnHelper.md
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs)) // >(0:16)
+  return twMerge(clsx(inputs))
 }
 
 const formatDistanceLocale = {
@@ -47,7 +45,6 @@ function formatDistance(token: string, count: number, options?: any): string {
   return result
 }
 
-// >(5:33)
 export function formatTimeToNow(date: Date): string {
   return formatDistanceToNowStrict(date, {
     addSuffix: true,

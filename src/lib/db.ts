@@ -6,7 +6,6 @@ declare global {
   var cachedPrisma: PrismaClient
 }
 
-// >(1:01)
 let prisma: PrismaClient
 if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient()
