@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
-import { Inter} from "next/font/google";
-import { cn } from '@/lib/utils'
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 export const metadata = {
   title: "Breadit",
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "bg-white text-slate-900 antialiased light",
+        "light bg-white text-slate-900 antialiased",
         inter.className
       )}
     >
