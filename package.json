@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "devTurbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "ztest": "console-ninja nodemon ztest.ts"
   },
   "dependencies": {
     "@editorjs/code": "^2.8.0",

@@ -1,6 +1,9 @@
-import "@/styles/globals.css";
 import { Inter } from "next/font/google";
+
 import { cn } from "@/lib/utils";
+import "@/styles/globals.css";
+
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "Breadit",
@@ -21,7 +24,12 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body>{children}</body>
+      <body className="min-h-screen bg-slate-50 pt-12 antialiased">
+        <Navbar />
+        <div className="container mx-auto h-full max-w-7xl pt-12">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
