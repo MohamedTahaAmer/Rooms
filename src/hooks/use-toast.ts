@@ -4,13 +4,14 @@ import * as React from "react"
 import type { ToastActionElement, ToastProps } from "@/components/ui/Toast"
 
 const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
-
+const TOAST_REMOVE_DELAY = 1
+  // reducing the time taken to remove a toast from the toasts queu
 type ToasterToast = ToastProps & {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
   action?: ToastActionElement
+  duration?: number
 }
 
 const actionTypes = {
@@ -124,7 +125,10 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
-const listeners: Array<(state: State) => void> = []
+// const listeners: Array<(state: State) => void> = []
+type Listener = (state: State) => void;
+
+const listeners: Listener[] = [];
 
 let memoryState: State = { toasts: [] }
 
@@ -139,7 +143,6 @@ type Toast = Omit<ToasterToast, "id">
 
 function toast({ ...props }: Toast) {
   const id = genId()
-
   const update = (props: ToasterToast) =>
     dispatch({
       type: "UPDATE_TOAST",

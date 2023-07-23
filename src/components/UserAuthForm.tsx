@@ -25,6 +25,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
         title: "Error",
         description: "There was an error logging in with Google",
         variant: "destructive",
+        duration:1000
       });
     } finally {
       setIsLoading(false);
