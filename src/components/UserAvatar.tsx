@@ -10,8 +10,7 @@ interface UserAvatarProps extends AvatarProps {
 }
 
 const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
-  // - here we can acess user.email and TS won't thow any errors, it will just add a squggly line
-  // console.log(user.email)
+  
   return (
     <Avatar {...props}>
       {user.image ? (

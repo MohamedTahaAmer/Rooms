@@ -54,3 +54,10 @@ export function formatTimeToNow(date: Date): string {
     },
   });
 }
+
+export function getSearchParam(search: string, param: string):string | undefined {
+  const regex = new RegExp(`(?<=${param}=).*?(?=$)`)
+  let callback : RegExpMatchArray | string | null = search.match(regex)
+  callback = callback && callback[0]
+  return callback  as string | undefined
+}

@@ -1,20 +1,63 @@
 import { User } from "next-auth";
 import { FC } from "react";
-import { DropdownMenuTrigger, DropdownMenu } from "./ui/DropdownMenu";
+import {
+  DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+} from "./ui/DropdownMenu";
 import UserAvatar from "./UserAvatar";
+import Link from "next/link";
+import SignOut from "./SignOut";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
 }
 
-const UserAccountNav: FC<UserAccountNavProps> = ({user}) => {
+const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          {/* // - although in the UserAvatar we  are defining the user to have only the name and image, but we can send the hole user object form here, and there inside the UserAvatar if we tried to access user.email we won't get an error, we will just get a squeggly line under the .email */}
-          <UserAvatar user={{name: user?.name, image: user?.image}}/>
+          
+          <UserAvatar
+            className="h-8 w-8"
+            user={{ name: user?.name, image: user?.image }}
+          />
         </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          <div className="flex items-center justify-start gap-2 p-2">
+            <div className="flex flex-col space-y-1 leading-none">
+              {user.name && <p className="font-medium">{user.name}</p>}
+              {user.email && ( // >(1:31)
+                <p className="w-[200px] truncate text-sm text-muted-foreground">
+                  {user.email}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <DropdownMenuSeparator />
+
+          <DropdownMenuItem asChild>
+            <Link href="/">Feed</Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem asChild>
+            <Link href="/">Create Community</Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem asChild>
+            <Link href="/">Settings</Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuSeparator />
+
+          <SignOut />
+
+        </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );

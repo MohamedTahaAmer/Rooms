@@ -3,7 +3,7 @@ import { Icons } from "./Icons";
 import { buttonVariants } from "./ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import UserAccountNav from "./UserAccountNav";
-import SignOut from "./SignOut";
+import SignInLink from "./SignInLink";
 
 async function Navbar() {
   const session = await getAuthSession();
@@ -16,16 +16,7 @@ async function Navbar() {
             Breadit
           </p>
         </Link>
-        {session ? (
-          <div className="flex gap-2">
-            <SignOut />
-            <UserAccountNav user={session.user} />
-          </div>
-        ) : (
-          <Link href="/sign-in" className={buttonVariants()}>
-            Sing In
-          </Link>
-        )}
+        {session ? <UserAccountNav user={session.user} /> : <SignInLink />}
       </div>
     </div>
   );

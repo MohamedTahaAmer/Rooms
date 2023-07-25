@@ -1,16 +1,25 @@
 "use client";
 
-import { FC } from "react";
-import { Button } from "./ui/Button";
+import { FC} from "react";
 import { signOut } from "next-auth/react";
+import { DropdownMenuItem } from "./ui/DropdownMenu";
 
 interface SignOutProps {}
 
 const SignOut: FC<SignOutProps> = ({}) => {
   return (
-    <div>
-      <Button onClick={() => signOut()}>sign out</Button>
-    </div>
+    <DropdownMenuItem
+      className="cursor-pointer"
+      onSelect={(event) => {
+        event.preventDefault();
+        signOut({
+          callbackUrl: `${window.location.href}`,
+        });
+      }}
+    >
+      Sign out
+    </DropdownMenuItem>
+
   );
 };
 
