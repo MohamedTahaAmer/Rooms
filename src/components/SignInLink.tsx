@@ -6,7 +6,6 @@ import { buttonVariants } from "./ui/Button";
 
 interface SignInLinkProps {}
 
-export const dynamic = "force-dynamic";
 const SignInLink: FC<SignInLinkProps> = ({}) => {
   const [href, setHref] = useState('/sing-in')
   useEffect(() => {

@@ -10,6 +10,7 @@ const SignOut: FC<SignOutProps> = ({}) => {
   return (
     <DropdownMenuItem
       className="cursor-pointer"
+      // - this onSelect isn't a natvie html event, it's an event implemented by Radix-UI and this event.preventDefault() will prevent the menu form closing when click on this item
       onSelect={(event) => {
         event.preventDefault();
         signOut({

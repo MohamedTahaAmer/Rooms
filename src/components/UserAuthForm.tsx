@@ -18,7 +18,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const loginWithGoogle = async () => {
     setIsLoading(true);
 
-    let callback: string | undefined = '/'
+    let callback: string | null = '/'
     callback = getSearchParam(window.location.search, "callbackUrl");
 
     try {
