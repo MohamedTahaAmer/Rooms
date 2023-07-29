@@ -10,7 +10,6 @@ import { Icons } from "./Icons";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-
 const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -18,16 +17,16 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const loginWithGoogle = async () => {
     setIsLoading(true);
 
-    let callback: string | null = '/'
+    let callback: string | null = "/";
     callback = getSearchParam(window.location.search, "callbackUrl");
-
+    if (callback?.startsWith("http")) callback = "";
     try {
-      await signIn("google", { callbackUrl: `${callback}` });
+      await signIn("google", { callbackUrl: `${callback ?? ""}` });
     } catch (error) {
       toast({
         title: "Error",
         description: "There was an error logging in with Google",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsLoading(false);

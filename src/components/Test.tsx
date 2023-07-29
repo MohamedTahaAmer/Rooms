@@ -9,9 +9,9 @@ interface UserAvatarProps extends AvatarProps {
   user: Pick<User, "name" | "image">;
 }
 
-const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
+const Test: FC<UserAvatarProps> = ({ user }) => {
   return (
-    <Avatar {...props}>
+    <Avatar className="rounded-none w-auto"> 
       {user.image ? (
         <Image
           fill
@@ -32,4 +32,4 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
   );
 };
 
-export default UserAvatar;
+export default Test;
