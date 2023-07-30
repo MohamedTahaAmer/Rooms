@@ -17,9 +17,12 @@ export const metadata = {
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
+  hi
 }: {
   children: React.ReactNode;
+  hi: React.ReactNode;
 }) {
+  console.log('Expression')
   return (
     <html
       lang="en"
@@ -29,6 +32,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen bg-slate-50 pt-12 antialiased">
+        {hi}
         {/* @ts-expect-error Server Component */}
         <Navbar />
         <Providers>
