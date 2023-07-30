@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { buttonVariants } from "./ui/Button";
+// export const dynamic = "force-dynamic";
 
 // - if you changed the butoon variants, then to get this type, just hover over the buttonVariants above and copy tge variants type
 type Variant = {
@@ -20,6 +21,7 @@ type SignInLinkProps = {
 
 const SignInLink = ({ variant = "default" }: SignInLinkProps) => {
   const [href, setHref] = useState("/sign-in");
+  console.log(href)
   useEffect(() => {
     if (window.location?.pathname !== "/sign-in") {
       setHref(`/sign-in?callbackUrl=${window.location?.pathname}`);
@@ -28,9 +30,9 @@ const SignInLink = ({ variant = "default" }: SignInLinkProps) => {
 
   href;
   return (
-    <Link href={href} className={buttonVariants({ variant })}>
+    <button onClick={()=> window.location.assign(href)} className={buttonVariants({ variant })}>
       Sing In
-    </Link>
+    </button>
   );
 };
 

@@ -22,7 +22,6 @@ export default function RootLayout({
   children: React.ReactNode;
   authModal: React.ReactNode;
 }) {
-  console.log('Expression')
   return (
     <html
       lang="en"
@@ -32,7 +31,6 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen bg-slate-50 pt-12 antialiased">
-        {hi}
         {/* @ts-expect-error Server Component */}
         <Navbar />
         <Providers>

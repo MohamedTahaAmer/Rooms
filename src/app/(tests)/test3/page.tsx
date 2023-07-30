@@ -1,5 +1,21 @@
-const Page = () => {
-  return <div className='font-medium text-2xl'>Not Protected</div>
-}
+"use client";
+import {  useRouter } from "next/navigation";
 
-export default Page
+const Page = () => {
+  const router = useRouter()
+  return (
+    <div className="text-2xl font-medium">
+      Not Protected
+      <button
+        onClick={() => {
+          console.log("sdfj");
+          router.push("/");
+        }}
+      >
+        home
+      </button>
+    </div>
+  );
+};
+
+export default Page;

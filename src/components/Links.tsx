@@ -26,6 +26,18 @@ const Links = ({ className }: LinksProps) => {
       >
         not
       </Link>
+      <Link
+        href="/sign-in"
+        className={cn(buttonVariants({ variant: "outline" }), "self-start")}
+      >
+        sign in
+      </Link>
+      <Link
+        href="/sign-up"
+        className={cn(buttonVariants({ variant: "outline" }), "self-start")}
+      >
+        sign up
+      </Link>
     </div>
   );
 };
