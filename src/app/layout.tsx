@@ -17,8 +17,10 @@ export const metadata = {
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html
@@ -32,6 +34,7 @@ export default function RootLayout({
         {/* @ts-expect-error Server Component */}
         <Navbar />
         <Providers>
+          {authModal}
           <Links className="mt-4 relative z-[10]" />
           <div className="container mx-auto h-full max-w-7xl pt-12">
             {children}

@@ -9,7 +9,7 @@ import {
 } from "./ui/DropdownMenu";
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
-import SignOut from "./SignOut";
+import SignOutItem from "./SignOutItem";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
@@ -53,7 +53,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
 
         <DropdownMenuSeparator />
 
-        <SignOut />
+        <SignOutItem />
       </DropdownMenuContent>
     </DropdownMenu>
   );

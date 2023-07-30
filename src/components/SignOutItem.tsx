@@ -1,12 +1,10 @@
 "use client";
 
-import { FC} from "react";
 import { signOut } from "next-auth/react";
 import { DropdownMenuItem } from "./ui/DropdownMenu";
 
-interface SignOutProps {}
 
-const SignOut: FC<SignOutProps> = ({}) => {
+const SignOutItem = () => {
   return (
     <DropdownMenuItem
       className="cursor-pointer"
@@ -23,4 +21,4 @@ const SignOut: FC<SignOutProps> = ({}) => {
   );
 };
 
-export default SignOut;
+export default SignOutItem;

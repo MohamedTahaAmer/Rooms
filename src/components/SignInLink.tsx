@@ -18,7 +18,7 @@ type SignInLinkProps = {
   variant?: keyof Variant;
 };
 
-const SignInLink = ({ variant = "default"}: SignInLinkProps) => {
+const SignInLink = ({ variant = "default" }: SignInLinkProps) => {
   const [href, setHref] = useState("/sign-in");
   useEffect(() => {
     if (window.location?.pathname !== "/sign-in") {

@@ -8,7 +8,6 @@ interface PageProps {}
 
 const Page: FC<PageProps> = ({}) => {
   const { data: session } = useSession({
-    // - this required prevents the useSession from returning null, it make it execute this onUnauthenticated
     required: true,
     onUnauthenticated() {
       redirect(`/sign-in?callbackUrl=/test2`);
