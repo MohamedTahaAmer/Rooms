@@ -2,20 +2,22 @@
 
 import { X } from "lucide-react";
 import { Button } from "./ui/Button";
-import { getSearchParam } from "@/lib/utils";
+import { useSearchParams } from 'next/navigation'
 
 const CloseModal = () => {
+  const searchParams = useSearchParams()
   const handleClick = () => {
-    let callbackURL = getSearchParam(window.location.search, "callbackUrl");
-    if (callbackURL?.startsWith("http")) callbackURL = "/";
-    if (callbackURL === null) callbackURL = "/";
+    const params = Object.fromEntries(searchParams.entries())
+    let callback = params.callbackUrl
+    if (callback?.startsWith("http")) callback = "/";
+    if (callback === null) callback = "/";
 
-    // router.push(callbackURL);
+    // router.push(callback);
       // - using the router.push() doesn't close the intersecting 'sign-in' or 'sign-up'
         // josh was using router.back(), it was working for him, but i want differen functionality
           // so i decieded to use window.assign
     
-    window.location.assign(callbackURL)
+    window.location.assign(callback)
     
   };
 

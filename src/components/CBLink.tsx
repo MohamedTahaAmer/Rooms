@@ -21,11 +21,12 @@ type CBLinkProps = {
   className?: string;
 };
 
+// CallBackLink, is a button that accepts ..., and adds a callbackURL depending on it's current route
 const CBLink = ({
-  variant,
-  href,
-  text,
-  className = "",
+  variant, // - if you wanna use one of the shad-cn styles
+  href, // - the route you wanna go to
+  text, // - the text of the button
+  className = "", // - custom styles
 }: CBLinkProps) => {
   const router = useRouter();
   function handleClick() {

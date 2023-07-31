@@ -2,11 +2,12 @@ import Test from "@/components/Test";
 import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-const Page = async () => {
+const Page = async ({ searchParams }: { [key: string]: string }) => {
+  // console.log(searchParams);
   const session = await getAuthSession();
   if (!session) {
     // redirect(`/sign-in?callbackUrl=/test`);
-      // disapling the redirection for now, as it will keep calling the sign-in intersection route
+    // disapling the redirection for now, as it will keep calling the sign-in intersection route
   }
 
   return (

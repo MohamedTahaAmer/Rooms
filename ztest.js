@@ -1,2 +1,3 @@
-const str = `{"callbackUrl":"/"}`.match(/(?<="callbackUrl":).*?(?=})/)
-console.log(str[0])
+str = "{-start-/search-end-}";
+const regexMatch = str.match(/(?<=-start-).*?(?=-end-)/); // /search
+const regex = regexMatch && regexMatch[0]

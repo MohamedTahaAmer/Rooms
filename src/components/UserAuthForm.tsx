@@ -1,6 +1,8 @@
 "use client";
 
-import { cn, getSearchParam } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
+
 import { signIn } from "next-auth/react";
 import * as React from "react";
 import { FC } from "react";
@@ -13,20 +15,23 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const searchParams = useSearchParams();
 
   const loginWithGoogle = async () => {
     setIsLoading(true);
 
-    let callback: string | null = "/";
-    callback = getSearchParam(window.location.search, "callbackUrl");
-    if (callback?.startsWith("http")) callback = "";
+    const params = Object.fromEntries(searchParams.entries());
+    let callback = params.callbackUrl;
+    if (callback?.startsWith("http")) callback = "/";
+    if (callback === null) callback = "/";
+
     try {
-      await signIn("google", { callbackUrl: `${callback ?? ""}` });
+      await signIn("google", { callbackUrl: callback });
     } catch (error) {
       toast({
         title: "Error",
         description: "There was an error logging in with Google",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
