@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 const Page = async () => {
   const session = await getAuthSession();
   if (!session) {
-    redirect(`/sign-in?callbackUrl=/test`);
+    // redirect(`/sign-in?callbackUrl=/test`);
+      // disapling the redirection for now, as it will keep calling the sign-in intersection route
   }
 
   return (

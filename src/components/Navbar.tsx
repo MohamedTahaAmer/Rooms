@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Icons } from "./Icons";
 import { getAuthSession } from "@/lib/auth";
 import UserAccountNav from "./UserAccountNav";
-import SignInLink from "./SignInLink";
+import CBLink from "./CBLink";
 
 async function Navbar() {
   const session = await getAuthSession();
@@ -19,7 +19,7 @@ async function Navbar() {
         {session ? (
           <UserAccountNav user={session.user} />
         ) : (
-          <SignInLink variant="default" />
+          <CBLink variant="default" href="/sign-in" text="Sign in" />
         )}
       </div>
     </div>

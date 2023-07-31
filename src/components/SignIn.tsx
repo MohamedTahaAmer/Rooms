@@ -1,6 +1,6 @@
 import { Icons } from '@/components/Icons'
 import UserAuthForm from '@/components/UserAuthForm'
-import Link from 'next/link'
+import CBLink from './CBLink'
 
 const SignIn = () => {
   return (
@@ -16,11 +16,11 @@ const SignIn = () => {
       <UserAuthForm />
       <p className='px-8 text-center text-sm text-muted-foreground'>
         New to Breaddit?{' '}
-        <Link
+        <CBLink
           href='/sign-up'
-          className='hover:text-brand text-sm underline underline-offset-4'>
-          Sign Up
-        </Link>
+          className='hover:text-brand text-sm underline underline-offset-4' 
+          text = 'Sign Up'
+          />
       </p>
     </div>
   )
