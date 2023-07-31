@@ -40,7 +40,6 @@ const Links = ({ className }: LinksProps) => {
       <button  
         className={cn(buttonVariants({ variant: "outline" }), "self-start")} 
         onClick={()=> {
-          console.log('clicked') 
           redirect('/test')
         }}
       >
