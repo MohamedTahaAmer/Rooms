@@ -122,6 +122,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
+// eslint-disable-next-line no-var, no-unused-vars
 type Listener = (state: State) => void;
 
 const listeners: Listener[] = [];

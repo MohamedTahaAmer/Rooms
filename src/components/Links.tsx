@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import CBLink from "./CBLink";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 
 interface LinksProps {
   className?: string;
@@ -42,8 +42,6 @@ const Links = ({ className }: LinksProps) => {
         onClick={()=> {
           console.log('clicked') 
           redirect('/test')
-          // console.log('clicked')
-          // notFound()
         }}
       >
         Trigger

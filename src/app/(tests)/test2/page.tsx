@@ -1,18 +1,9 @@
 "use client";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-
 import { FC } from "react";
 
 interface PageProps {}
 
 const Page: FC<PageProps> = ({}) => {
-  // const { data: session } = useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     redirect(`/sign-in?callbackUrl=/test2`);
-  //   },
-  // });
   return (
     <div>
       Protected Client
