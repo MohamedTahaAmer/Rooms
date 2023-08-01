@@ -18,7 +18,7 @@ const Page = () => {
       //   router.push("/");
       // }}
     >
-      home
+      Testing Git
     </button>
   );
   if (test) {
