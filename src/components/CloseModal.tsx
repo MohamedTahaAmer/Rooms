@@ -14,8 +14,8 @@ const CloseModal = () => {
 
     // router.push(callback);
       // - using the router.push() doesn't close the intersecting 'sign-in' or 'sign-up'
+      // so i decieded to use window.assign
         // josh was using router.back(), it was working for him, but i want differen functionality
-          // so i decieded to use window.assign
     
     window.location.assign(callback)
     

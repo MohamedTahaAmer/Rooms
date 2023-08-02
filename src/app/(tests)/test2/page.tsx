@@ -1,15 +1,20 @@
 "use client";
-import { FC } from "react";
+import { buttonVariants } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
-interface PageProps {}
-
-const Page: FC<PageProps> = ({}) => {
+const Page = () => {
+  const router = useRouter()
   return (
     <div>
       Protected Client
       <div className="mx-auto w-fit text-2xl font-bold">
-        {/* {session?.user.name } */}
-        {'username'}
+        <button
+          className={cn(buttonVariants({ variant: "outline" }), "self-start")}
+          onClick={() => {router.push('/')}}
+        >
+          Trigger
+        </button>
       </div>
     </div>
   );

@@ -2,7 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/Button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useState } from "react";
 
 // - if you changed the button variants, then to get this type, just hover over the buttonVariants above and copy tge variants type
 type Variant = {
@@ -28,23 +29,24 @@ const CBLink = ({
   text, // - the text of the button
   className = "", // - custom styles
 }: CBLinkProps) => {
-  const router = useRouter();
-  function handleClick() {
+  const [hrefState, setHrefState] = useState("/");
+  function handleMouseHover() {
     let callback = window.location.pathname;
     if (callback === "/sign-in" || callback === "/sign-up") callback = "/";
-    router.push(`${href}?callbackUrl=${callback}`);
+    setHrefState(`${href}?callbackUrl=${callback}`);
   }
 
-  let cssClasses = className
-  if(variant) cssClasses = cn(buttonVariants({variant}), className)
+  let cssClasses = className;
+  if (variant) cssClasses = cn(buttonVariants({ variant }), className);
 
   return (
-    <button
-      onClick={handleClick}
+    <Link
+      href={hrefState}
+      onMouseEnter={handleMouseHover}
       className={cssClasses}
     >
       {text}
-    </button>
+    </Link>
   );
 };
 

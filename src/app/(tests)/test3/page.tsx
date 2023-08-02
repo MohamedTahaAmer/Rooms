@@ -1,11 +1,9 @@
 "use client";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Page = () => {
-  // const router = useRouter();
   const [test, setTest] = useState(true);
   const button = (
     <button
@@ -14,9 +12,6 @@ const Page = () => {
         buttonVariants(),
         "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
       )}
-      // onClick={() => {
-      //   router.push("/");
-      // }}
     >
       Testing Git
     </button>
