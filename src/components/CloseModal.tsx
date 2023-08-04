@@ -8,7 +8,7 @@ const CloseModal = () => {
   const searchParams = useSearchParams()
   const handleClick = () => {
     const params = Object.fromEntries(searchParams.entries())
-    let callback = params.callbackUrl
+    let callback = params.callbackUrl ?? '/'
     if (callback?.startsWith("http")) callback = "/";
     if (callback === null) callback = "/";
 

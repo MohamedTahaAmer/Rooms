@@ -76,6 +76,7 @@ model Subscription {
   subredditId String
 
   @@id([userId, subredditId])
+  
   @@index([userId])
   @@index([subredditId])
 }
