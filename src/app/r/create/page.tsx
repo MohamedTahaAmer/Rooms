@@ -1,19 +1,18 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/hooks/use-toast";
-import { useCustomToasts } from "@/hooks/use-custom-toasts";
 import { CreateSubredditPayload } from "@/lib/validators/subreddit";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 const Page = () => {
   const router = useRouter();
   const [input, setInput] = useState<string>("");
-  const { loginToast } = useCustomToasts();
 
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: async () => {
@@ -30,23 +29,39 @@ const Page = () => {
     onError: (err) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
-          return toast({
+          toast({
             title: "Subreddit already exists.",
             description: "Please choose a different name.",
             variant: "destructive",
           });
+          return;
         }
 
         if (err.response?.status === 422) {
-          return toast({
+          toast({
             title: "Invalid subreddit name.",
             description: "Please choose a name between 3 and 21 letters.",
             variant: "destructive",
           });
+          return;
         }
 
         if (err.response?.status === 401) {
-          return loginToast();
+          const { dismiss } = toast({
+            title: "Login required.",
+            description: "You need to be logged in to create a subreddit.",
+            variant: "destructive",
+            action: (
+              <Link
+                onClick={() => dismiss()}
+                href="/sign-in"
+                className={buttonVariants({ variant: "subtle" })}
+              >
+                Login
+              </Link>
+            ),
+          });
+          return;
         }
       }
 
@@ -97,7 +112,7 @@ const Page = () => {
           </Button>
           <Button
             isLoading={isLoading}
-            disabled={input.length === 0}
+            disabled={input.length < 1}
             onClick={() => createCommunity()}
           >
             Create Community

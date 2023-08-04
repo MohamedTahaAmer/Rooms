@@ -6,6 +6,8 @@ import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 export async function POST(req: Request) {
+  // return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+
   try {
     const session = await getAuthSession();
 
@@ -49,7 +51,7 @@ export async function POST(req: Request) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       const message = fromZodError(error).details[0].message;
-      return NextResponse.json({ message: message }, { status: 422 });
+      return NextResponse.json({ message }, { status: 422 });
     }
 
     return NextResponse.json(

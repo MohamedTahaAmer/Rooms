@@ -16,7 +16,7 @@
 ### Next.js cashing routes, and the navbar never unmounts
 ```js
 
-// i have a problem with next.js cashing, that when the user hits a route that he used before, then next.js never sends that request to the server, instead it returns a cashed version of that url, but the navbar is fixed in all routes, the components inside of it will have the value of the last visited new url only, if the client returned to an onld url, then next.js will just his the old cashed version, and the conponent in the navbar won't get back to it's state when this url was first visited instead it still have the value for the previous url, and won't change it untill the user hits a route that he never hit before,
+// i have a problem with next.js cashing, that when the user hits a route that he used before, then next.js never sends that request to the server, instead it returns a cashed version of that url, but the navbar is fixed in all routes, the components inside of it will have the value of the last visited new url only, if the client returned to an onld url, then next.js will just serve the old cashed version, and the conponent in the navbar won't get back to it's state when this url was first visited instead it still have the value for the previous url, and won't change it untill the user hits a route that he never hit before,
 
 // tried using
 
@@ -29,5 +29,8 @@
   // - but this way i lost the accessability, the screen reader won't that this is a link
 
 // - after solving it decieded to continue with the project, while watching youtube vids about the internal of next.js
+
+// ## here after serveral days latter
+  // i solved the accessablity issue be returning to use a link, but it's href is set using a state that get it's value onMouseIn event
 
 ```
