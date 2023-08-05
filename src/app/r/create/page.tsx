@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { toast } from "@/hooks/use-toast";
 import { CreateSubredditPayload } from "@/lib/validators/subreddit";
@@ -8,9 +8,10 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from "next/link";
+import { useCustomToasts } from "@/hooks/use-custom-toasts";
 
 const Page = () => {
+  const { loginToast } = useCustomToasts();
   const router = useRouter();
   const [input, setInput] = useState<string>("");
 
@@ -47,20 +48,7 @@ const Page = () => {
         }
 
         if (err.response?.status === 401) {
-          const { dismiss } = toast({
-            title: "Login required.",
-            description: "You need to be logged in to create a subreddit.",
-            variant: "destructive",
-            action: (
-              <Link
-                onClick={() => dismiss()}
-                href="/sign-in"
-                className={buttonVariants({ variant: "subtle" })}
-              >
-                Login
-              </Link>
-            ),
-          });
+          loginToast();
           return;
         }
       }
@@ -72,6 +60,12 @@ const Page = () => {
       });
     },
     onSuccess: (subreddit) => {
+      toast({
+        title: `${subreddit}.`,
+        description: `${subreddit} Subreddit Created Successfully.`,
+        variant: "success",
+        duration: 2000,
+      });
       router.push(`/r/${subreddit}`);
     },
   });

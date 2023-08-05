@@ -1,15 +1,12 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { SubredditValidator } from "@/lib/validators/subreddit";
+import { SubredditSubscriptionValidator } from "@/lib/validators/subreddit";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 export async function POST(req: Request) {
-  // return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-
   try {
-    req.headers;
     const session = await getAuthSession();
 
     if (!session?.user) {
@@ -17,37 +14,32 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { name } = SubredditValidator.parse(body);
+    const { subredditId } = SubredditSubscriptionValidator.parse(body);
 
-    // check if subreddit already exists
-    const subredditExists = await db.subreddit.findFirst({
-      where: { name },
+    const subscriptionExists = await db.subscription.findFirst({
+      where: {
+        subredditId,
+        userId: session.user.id,
+      },
     });
 
-    if (subredditExists) {
+    if (subscriptionExists) {
       return NextResponse.json(
-        { message: "Subreddit already exists" },
-        { status: 409 }
+        { message: "You've already subscribed to this subreddit" },
+        {
+          status: 409,
+        }
       );
     }
 
-    // create subreddit and associate it with the user
-    const subreddit = await db.subreddit.create({
-      data: {
-        name,
-        creatorId: session.user.id,
-      },
-    });
-
-    // creator also has to be subscribed
     await db.subscription.create({
       data: {
+        subredditId,
         userId: session.user.id,
-        subredditId: subreddit.id,
       },
     });
 
-    return NextResponse.json({ subreddit: subreddit.name });
+    return NextResponse.json({ subredditId });
   } catch (error) {
     if (error instanceof z.ZodError) {
       const message = fromZodError(error).details[0].message;
@@ -55,7 +47,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(
-      { message: "Could not create subreddit" },
+      {
+        message:
+          "Could not subscribe to subreddit at this time. Please try later",
+      },
       { status: 500 }
     );
   }
