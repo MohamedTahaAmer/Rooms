@@ -29,13 +29,16 @@ const SubscribeLeaveToggle = ({
         subredditId,
       };
 
-      const { data } = await axios.post("/api/subreddit/subscribe", payload);
-      return data as string;
+      const { data }: { data: { subredditId: string } } = await axios.post(
+        "/api/subreddit/subscribe",
+        payload
+      );
+      return data.subredditId;
     },
     onError: (err) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 401) {
-          loginToast();
+          loginToast(err.response.data.message);
           return;
         }
       }
@@ -45,7 +48,6 @@ const SubscribeLeaveToggle = ({
         description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
-      return;
     },
     onSuccess: () => {
       startTransition(() => {
@@ -66,13 +68,24 @@ const SubscribeLeaveToggle = ({
         subredditId,
       };
 
-      const { data } = await axios.post("/api/subreddit/unsubscribe", payload);
-      return data as string;
+      const { data }: { data: { subredditId: string } } = await axios.post(
+        "/api/subreddit/unsubscribe",
+        payload
+      );
+      return data.subredditId;
     },
-    onError: (err: AxiosError) => {
+    onError: (err) => {
+      if (err instanceof AxiosError) {
+        // - here we are too lazy to handle all the axios erros, unlike in the create subreddit page.
+        if (err.response?.status === 401) {
+          loginToast(err.response.data.message);
+          return;
+        }
+      }
+
       toast({
         title: "Error",
-        description: err.response?.data as string,
+        description: "Some Thing went wrong, Please try again.",
         variant: "destructive",
       });
     },
@@ -82,7 +95,7 @@ const SubscribeLeaveToggle = ({
       });
       toast({
         title: "Unsubscribed!",
-        description: `You are now unsubscribed from/${subredditName}`,
+        description: `You are now unSubscribed from/${subredditName}`,
         duration: 2000,
         variant: "success",
       });

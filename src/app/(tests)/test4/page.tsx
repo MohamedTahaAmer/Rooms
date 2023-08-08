@@ -7,3 +7,20 @@ const Page = ({ searchParams }: PageProps) => {
 };
 
 export default Page;
+
+// "use client";
+
+// import { useEffect, useRef } from "react";
+
+// const Page = () => {
+//   const myRef = useRef<HTMLDivElement>(null);
+
+//   useEffect(() => {
+//       // This will result in the read-only error
+//       myRef.current = document.getElementById("someElement");
+//   }, []);
+
+//   return <div ref={myRef}>Hello World</div>;
+// };
+
+// export default Page;

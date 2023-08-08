@@ -6,14 +6,13 @@ import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
 
 export async function POST(req: Request) {
-  // return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  // return NextResponse.json({ message: "Login Requried." }, { status: 401 });
 
   try {
-    req.headers;
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ message: "Login Requried" }, { status: 401 });
     }
 
     const body = await req.json();
@@ -50,12 +49,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ subreddit: subreddit.name });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const message = fromZodError(error).details[0].message;
+      const message = fromZodError(error).details[0].message.replace(
+        "String",
+        "Name"
+      );
       return NextResponse.json({ message }, { status: 422 });
     }
 
     return NextResponse.json(
-      { message: "Could not create subreddit" },
+      { message: "Could not Create a subreddit. Please try later." },
       { status: 500 }
     );
   }

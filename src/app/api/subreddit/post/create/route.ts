@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { SubredditSubscriptionValidator } from "@/lib/validators/subreddit";
+import { PostValidator } from "@/lib/validators/post";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
@@ -14,32 +14,34 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { subredditId } = SubredditSubscriptionValidator.parse(body);
 
-    // see if he is already subscribed
-    const subscriptionExists = await db.subscription.findFirst({
+    const { title, content, subredditId } = PostValidator.parse(body);
+
+    // verify user is subscribed to passed subreddit id
+    const subscription = await db.subscription.findFirst({
       where: {
         subredditId,
         userId: session.user.id,
       },
     });
 
-    if (subscriptionExists) {
+    if (!subscription) {
       return NextResponse.json(
-        { message: "You've already subscribed to this subreddit" },
-        { status: 409 }
+        { message: "Subscribe to post" },
+        { status: 403 }
       );
     }
 
-    // subscribe
-    await db.subscription.create({
+    await db.post.create({
       data: {
+        title,
+        content,
+        authorId: session.user.id,
         subredditId,
-        userId: session.user.id,
       },
     });
 
-    return NextResponse.json({ subredditId });
+    return NextResponse.json({ message: "OK" });
   } catch (error) {
     if (error instanceof z.ZodError) {
       const message = fromZodError(error).details[0].message;
@@ -48,8 +50,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       {
-        message:
-          "Could not subscribe to subreddit at this time. Please try later",
+        message: "Could not post to subreddit at this time. Please try later.",
       },
       { status: 500 }
     );

@@ -10,12 +10,13 @@ export async function POST(req: Request) {
     const session = await getAuthSession();
 
     if (!session?.user) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ message: "LogIn Required." }, { status: 401 });
     }
 
     const body = await req.json();
     const { subredditId } = SubredditSubscriptionValidator.parse(body);
 
+    // see if he isn't subscribed already
     const subscriptionExists = await db.subscription.findFirst({
       where: {
         subredditId,
@@ -30,16 +31,19 @@ export async function POST(req: Request) {
       );
     }
 
+    // see if he is the creator
     const subreddit = await db.subreddit.findFirst({
       where: { id: subredditId, creatorId: session.user.id },
     });
 
     if (subreddit) {
       return NextResponse.json(
-        { message: "Creator Of a subReddit, can't unsub from it" },
+        { message: "Creator Of a subReddit, can't unSubscribe from it" },
         { status: 409 }
       );
     }
+
+    // unsubscribe
     await db.subscription.delete({
       where: {
         userId_subredditId: { subredditId, userId: session.user.id },

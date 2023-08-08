@@ -7,16 +7,16 @@ import { notFound } from "next/navigation";
 
 interface PageProps {
   params: {
-    slug: string;
+    subredditName: string;
   };
 }
 const page = async ({ params }: PageProps) => {
-  const { slug } = params;
+  const { subredditName } = params;
 
   const session = await getAuthSession();
 
   const subreddit = await db.subreddit.findFirst({
-    where: { name: slug },
+    where: { name: subredditName },
     include: {
       posts: {
         include: {

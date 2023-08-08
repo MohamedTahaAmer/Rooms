@@ -31,7 +31,7 @@ const Page = () => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
           toast({
-            title: "Subreddit already exists.",
+            title: err.response.data.message,
             description: "Please choose a different name.",
             variant: "destructive",
           });
@@ -40,7 +40,7 @@ const Page = () => {
 
         if (err.response?.status === 422) {
           toast({
-            title: "Invalid subreddit name.",
+            title: err.response.data.message,
             description: "Please choose a name between 3 and 21 letters.",
             variant: "destructive",
           });
@@ -48,25 +48,34 @@ const Page = () => {
         }
 
         if (err.response?.status === 401) {
-          loginToast();
+          loginToast(err.response.data.message);
+          return;
+        }
+
+        if (err.response?.status === 500) {
+          toast({
+            title: err.response.data.message,
+            description: "Could not create subreddit.",
+            variant: "destructive",
+          });
           return;
         }
       }
 
       toast({
         title: "There was an error.",
-        description: "Could not create subreddit.",
+        description: "Please Check your internet connection.",
         variant: "destructive",
       });
     },
-    onSuccess: (subreddit) => {
+    onSuccess: (name) => {
       toast({
-        title: `${subreddit}.`,
-        description: `${subreddit} Subreddit Created Successfully.`,
+        title: `${name}.`,
+        description: `${name} Subreddit Created Successfully.`,
         variant: "success",
         duration: 2000,
       });
-      router.push(`/r/${subreddit}`);
+      router.push(`/r/${name}`);
     },
   });
 
