@@ -11,11 +11,11 @@ interface UserAvatarProps extends AvatarProps {
 
 const Test: FC<UserAvatarProps> = ({ user }) => {
   return (
-    <Avatar className="rounded-none w-auto"> 
+    <Avatar className="mt-4">
       {user.image ? (
         <Image
           fill
-          className="h-4 w-4"
+          sizes="100px"
           src={user?.image}
           alt="profile picture"
           referrerPolicy="no-referrer"

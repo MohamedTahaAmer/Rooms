@@ -17,6 +17,9 @@ const Page = async () => {
           user={{ image: session?.user?.image!, name: session?.user?.name! }}
         />
       </div>
+      <p className="mt-8 w-fit rounded-xl bg-red-100 px-6 py-4">
+        this is just comp
+      </p>
     </section>
   );
 };

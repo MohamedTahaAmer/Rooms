@@ -14,8 +14,8 @@ const UserAvatar: FC<UserAvatarProps> = ({ user, ...props }) => {
     <Avatar {...props}>
       {user.image ? (
         <Image
+          sizes="100px"
           fill
-          className="h-4 w-4"
           src={user?.image}
           alt="profile picture"
           referrerPolicy="no-referrer"

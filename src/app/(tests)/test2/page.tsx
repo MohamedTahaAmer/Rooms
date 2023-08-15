@@ -1,23 +1,23 @@
-"use client";
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+// 'use client';
+// import { buttonVariants } from '@/components/ui/Button';
+// import { cn } from '@/lib/utils';
+// import { useRouter } from 'next/navigation';
 
 const Page = ({}) => {
-  const router = useRouter();
+  // const router = useRouter();
   return (
     <div>
       Protected Client
-      <div className="mx-auto w-fit text-2xl font-bold">
+      {/* <div className='mx-auto w-fit text-2xl font-bold'>
         <button
-          className={cn(buttonVariants({ variant: "outline" }), "self-start")}
+          className={cn(buttonVariants({ variant: 'outline' }), 'self-start')}
           onClick={() => {
-            router.push("/");
+            router.push('/');
           }}
         >
           Trigger
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
