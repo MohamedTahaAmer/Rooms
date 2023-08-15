@@ -81,14 +81,9 @@ const PostVoteClient = ({
     // this on mutate runs directley after calling the mutationFn, it doesn't wait till the mutationFn returns like onSuccess() does
     onMutate: (type: VoteType) => {
       // this type is the same argument you pass to the mutationFn when calling it
-      console.log(currentVote);
-      console.log(type);
 
       // User is voting the same way again,, so remove their vote
       if (currentVote === type) {
-        console.log('in');
-        console.log(currentVote);
-        console.log(votesAmt);
         // then first make he current vote to undefined,
         setCurrentVote(undefined);
         if (type === 'UP') setVotesAmt((prev) => prev - 1);

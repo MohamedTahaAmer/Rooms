@@ -21,7 +21,6 @@ export default function RootLayout({
   children: React.ReactNode;
   authModal: React.ReactNode;
 }) {
-  // console.log('sdf');
   return (
     <html
       lang='en'
