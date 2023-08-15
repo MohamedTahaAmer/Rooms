@@ -23,7 +23,7 @@ const CustomFeed = async () => {
   let whereClause = {};
   // if he is hasn't followed any subreddites, then he will get all the posts like any un auth one
 
-  if (followedCommunities) {
+  if (followedCommunities.length !== 0) {
     // if in home and session and followedCommunitiesIds then get his comunities only
     whereClause = {
       subreddit: {

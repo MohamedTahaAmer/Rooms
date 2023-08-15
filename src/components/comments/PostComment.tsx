@@ -155,7 +155,7 @@ const PostComment: FC<PostCommentProps> = ({
                   if (!input) return;
                   postComment({
                     postId,
-                    text: `@${comment.author.username} \n ${input}`,
+                    text: `@${comment.author.username} \n${input}`,
                     replyToId: comment.replyToId ?? comment.id, // default to top-level comment
                   });
                 }}

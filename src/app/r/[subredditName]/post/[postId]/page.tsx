@@ -29,12 +29,12 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
   const session = await getAuthSession();
 
   // >(7:08) getting the cash from redis as it's faster than planetScale
-  // const cachedPost = undefined as unknown as CachedPost;
+  const cachedPost = undefined as unknown as CachedPost;
 
   // hash get all
-  const cachedPost = (await redis.hgetall(
-    `post:${params.postId}`
-  )) as CachedPost;
+  // const cachedPost = (await redis.hgetall(
+  //   `post:${params.postId}`
+  // )) as CachedPost;
 
   // >(7:10)
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
@@ -104,7 +104,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
       {/* // >(7:22) */}
       <div
         // note that this postVotes is rendered twice, one here, for md: and above, and, it's also rendered down after the post for devices smaller than md:
-        className='hidden md:block'
+        className='hidden md:mr-2 md:block'
       >
         {postVotes}
       </div>

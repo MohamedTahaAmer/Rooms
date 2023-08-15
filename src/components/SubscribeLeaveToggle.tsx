@@ -111,7 +111,7 @@ const SubscribeLeaveToggle = ({
       {isUnSubLoading ? (
         <Loader2 className='inline animate-spin ' />
       ) : (
-        'Leave community'
+        'Leave community !'
       )}
     </div>
   ) : (

@@ -43,7 +43,7 @@ export async function GET(req: Request) {
           },
         });
 
-        if (followedCommunities) {
+        if (followedCommunities.length !== 0) {
           // if in home and session and followedCommunitiesIds then get his comunities only
           whereClause = {
             subreddit: {

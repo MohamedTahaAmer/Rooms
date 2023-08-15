@@ -68,13 +68,15 @@ const Post: FC<PostProps> = ({
           </a>
 
           <div
-            className='relative max-h-40 w-full overflow-clip  rounded-2xl text-sm'
+            className='relative max-h-40 w-full overflow-clip  text-sm'
             ref={pRef}
           >
             <EditorOutput content={post.content} />
 
             {contentHeight === 160 && (
-              <div className='absolute bottom-0 left-0 h-24 w-full rounded-2xl bg-gradient-to-t from-gray-50 to-transparent'></div>
+              <Link href={`/r/${subredditName}/post/${post.id}`}>
+                <div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-gray-100 to-transparent'></div>
+              </Link>
             )}
           </div>
         </div>

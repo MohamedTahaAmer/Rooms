@@ -1,28 +1,23 @@
-import { User } from 'next-auth';
-import { FC } from 'react';
 import { Avatar, AvatarFallback } from './ui/Avatar';
 import Image from 'next/image';
-import { AvatarProps } from '@radix-ui/react-avatar';
 import { Icons } from './Icons';
+import { getAuthSession } from '@/lib/auth';
 
-interface UserAvatarProps extends AvatarProps {
-  user: Pick<User, 'name' | 'image'>;
-}
-
-const Test: FC<UserAvatarProps> = ({ user }) => {
+const Test = async () => {
+  const session = await getAuthSession();
   return (
     <Avatar className='mt-4'>
-      {user.image ? (
+      {session?.user.image ? (
         <Image
           fill
           sizes='100px'
-          src={user?.image}
+          src={session?.user.image}
           alt='profile picture'
           referrerPolicy='no-referrer'
         />
       ) : (
         <AvatarFallback>
-          <span className='sr-only'>{user?.name}</span>
+          <span className='sr-only'>{session?.user.name}</span>
           <div className='relative h-8 w-8 bg-gray-200'>
             <Icons.user className='absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2' />
           </div>
