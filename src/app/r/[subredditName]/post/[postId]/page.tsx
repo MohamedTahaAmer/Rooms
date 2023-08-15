@@ -29,12 +29,12 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
   const session = await getAuthSession();
 
   // >(7:08) getting the cash from redis as it's faster than planetScale
-  const cachedPost = undefined as unknown as CachedPost;
+  // const cachedPost = undefined as unknown as CachedPost;
 
   // hash get all
-  // const cachedPost = (await redis.hgetall(
-  //   `post:${params.postId}`
-  // )) as CachedPost;
+  const cachedPost = (await redis.hgetall(
+    `post:${params.postId}`
+  )) as CachedPost;
 
   // >(7:10)
   let post: (Post & { votes: Vote[]; author: User }) | null = null;
