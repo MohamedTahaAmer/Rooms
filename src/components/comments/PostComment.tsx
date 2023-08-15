@@ -94,7 +94,7 @@ const PostComment: FC<PostCommentProps> = ({
         </div>
       </div>
 
-      <pre className='mt-2 text-sm text-zinc-900'>{comment.text}</pre>
+      <pre className='mt-2 px-4 text-sm text-zinc-900'>{comment.text}</pre>
 
       <div className='flex items-center gap-2'>
         <CommentVotes

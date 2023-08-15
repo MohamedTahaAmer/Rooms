@@ -74,14 +74,15 @@ const PostFeed: FC<PostFeedProps> = ({
           );
         } else {
           return (
-            <Post
-              key={post.id}
-              post={post}
-              commentAmt={post.comments.length}
-              subredditName={post.subreddit.name}
-              votesAmt={votesAmt}
-              currentVoteType={currentVote?.type}
-            />
+            <li key={post.id}>
+              <Post
+                post={post}
+                commentAmt={post.comments.length}
+                subredditName={post.subreddit.name}
+                votesAmt={votesAmt}
+                currentVoteType={currentVote?.type}
+              />
+            </li>
           );
         }
       })}
