@@ -8,8 +8,6 @@ import { FC, useRef } from 'react';
 import EditorOutput from './EditorOutput';
 import PostVoteClient from './post-vote/PostVoteClient';
 
-// type PartialVote = Pick<Vote, 'type'>;
-
 interface PostProps {
 	post: Post & {
 		author: User;

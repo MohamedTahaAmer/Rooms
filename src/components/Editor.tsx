@@ -129,6 +129,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 
 	useEffect(() => {
 		if (Object.keys(errors).length) {
+			// eslint-disable-next-line
 			for (const [_key, value] of Object.entries(errors)) {
 				value;
 				toast({
@@ -202,7 +203,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 						className='w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none'
 					/>
 					<div id='editor' className='min-h-[500px]' />
-					<p className='foreground text-sm'>
+					<p className='text-sm text-foreground'>
 						Use{' '}
 						<kbd className='rounded-md border bg-muted px-1 text-xs uppercase'>
 							Tab
