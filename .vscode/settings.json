@@ -1,8 +1,8 @@
-{
-  "editor.wordWrap": "on"
-} // {
-//   "typescript.tsdk": "node_modules\\typescript\\lib",
-//   "typescript.enablePromptUseWorkspaceTsdk": true
-// }
+ {
+  // "typescript.tsdk": "node_modules\\typescript\\lib",
+  // "typescript.enablePromptUseWorkspaceTsdk": true,
+  "eslint.enable": false,
+    "typescript.validate.enable": false
+}
 
 // using the global typescript and ts-node
