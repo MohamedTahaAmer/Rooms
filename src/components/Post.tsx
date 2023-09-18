@@ -6,7 +6,7 @@ import { MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { FC, useRef } from 'react';
 import EditorOutput from './EditorOutput';
-import PostVoteClient from './post-vote/PostVoteClient';
+import FeedVotes from './post-vote/FeedVotes';
 
 interface PostProps {
 	post: Post & {
@@ -30,9 +30,9 @@ const Post: FC<PostProps> = ({
 	const pRef = useRef<HTMLParagraphElement>(null);
 
 	return (
-		<div className='shadoww rounded-md bg-background'>
+		<div className='shadoww relative rounded-md bg-background'>
 			<div className='flex justify-between px-6 py-4'>
-				<PostVoteClient
+				<FeedVotes
 					postId={post.id}
 					initialVotesAmt={_votesAmt}
 					initialVote={_currentVote?.type}
