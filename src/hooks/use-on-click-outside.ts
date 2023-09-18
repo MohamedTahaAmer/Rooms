@@ -4,7 +4,6 @@ type Event = MouseEvent | TouchEvent
 
 export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
-  // eslint-disable-next-line no-var, no-unused-vars
   handler: (event: Event) => void
 ) => {
   useEffect(() => {
@@ -14,7 +13,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
         return
       }
 
-      handler(event) 
+      handler(event) // Call the handler only if the click is outside of the element passed.
     }
 
     document.addEventListener('mousedown', listener)
@@ -24,5 +23,5 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
       document.removeEventListener('mousedown', listener)
       document.removeEventListener('touchstart', listener)
     }
-  }, [ref, handler]) 
+  }, [ref, handler]) // Reload only if ref or handler changes
 }

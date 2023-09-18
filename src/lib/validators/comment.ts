@@ -1,4 +1,3 @@
-// >(7:59)
 import { z } from 'zod'
 
 export const CommentValidator = z.object({

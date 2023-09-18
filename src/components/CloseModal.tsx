@@ -1,35 +1,20 @@
-"use client";
+'use client'
 
-import { X } from "lucide-react";
-import { Button } from "./ui/Button";
-import { useSearchParams } from 'next/navigation'
+import { X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { FC } from 'react'
+import { Button } from './ui/Button'
 
-const CloseModal = () => {
-  const searchParams = useSearchParams()
-  const handleClick = () => {
-    const params = Object.fromEntries(searchParams.entries())
-    let callback = params.callbackUrl ?? '/'
-    if (callback?.startsWith("http")) callback = "/";
-    if (callback === null) callback = "/";
+interface CloseModalProps {}
 
-    // router.push(callback);
-      // - using the router.push() doesn't close the intersecting 'sign-in' or 'sign-up'
-      // so i decieded to use window.assign
-        // josh was using router.back(), it was working for him, but i want differen functionality
-    
-    window.location.assign(callback)
-    
-  };
+const CloseModal: FC<CloseModalProps> = ({}) => {
+  const router = useRouter()
 
   return (
-    <Button
-      variant="subtle"
-      className="h-6 w-6 rounded-md p-0"
-      onClick={handleClick}
-    >
-      <X aria-label="close modal" className="h-4 w-4" />
+    <Button variant='subtle' className='h-6 w-6 p-0 rounded-md' onClick={() => router.back()}>
+      <X aria-label='close modal' className='h-4 w-4' />
     </Button>
-  );
-};
+  )
+}
 
-export default CloseModal;
+export default CloseModal

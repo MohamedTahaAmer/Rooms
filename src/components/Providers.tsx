@@ -1,21 +1,26 @@
-"use client";
+'use client';
 
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
-import { FC, ReactNode } from "react";
+import { ThemeProvider } from '@/providers/theme-provider';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { SessionProvider } from 'next-auth/react';
+import { FC, ReactNode } from 'react';
 
 interface LayoutProps {
-  children: ReactNode;
+	children: ReactNode;
 }
 
-const Providers: FC<LayoutProps> = ({ children }) => {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <SessionProvider>{children}</SessionProvider>
-    </QueryClientProvider>
-  );
+const Providers: FC<LayoutProps> = ({ children }) => {
+	return (
+		<QueryClientProvider client={queryClient}>
+			<SessionProvider>
+				<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+					{children}
+				</ThemeProvider>
+			</SessionProvider>
+		</QueryClientProvider>
+	);
 };
 
 export default Providers;

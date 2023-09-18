@@ -1,69 +1,83 @@
-import { db } from "@/lib/db";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { nanoid } from "nanoid";
-import { NextAuthOptions, getServerSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import { db } from '@/lib/db';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import type { User } from '@prisma/client';
+import { nanoid } from 'nanoid';
+import { NextAuthOptions, getServerSession } from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
-  session: {
-    strategy: "jwt",
-  },
-  pages: {
-    signIn: "/sign-in",
-  },
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  secret: process.env.NEXTAUTH_SECRET,
+	adapter: PrismaAdapter(db),
+	session: {
+		strategy: 'jwt',
+	},
+	pages: {
+		signIn: '/sign-in',
+	},
+	providers: [
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID!,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+		}),
+	],
+	callbacks: {
+		async session({ token, session }) {
+			if (token) {
+				session.user.id = token.id;
+				session.user.name = token.name;
+				session.user.email = token.email;
+				session.user.image = token.picture;
+				session.user.username = token.username;
+			}
 
-  callbacks: {
-    async jwt({ token, user }) {
-      const dbUser = await db.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      });
+			return session;
+		},
 
-      if (!dbUser) {
-        token.id = user!.id;
-        return token;
-      }
+		async jwt({ token, user, trigger, session }) {
+			// this user object is present only for the first time the user logs in
+			if (user) {
+				token.id = user.id;
 
-      if (!dbUser.username) {
-        await db.user.update({
-          where: {
-            id: dbUser.id,
-          },
-          data: {
-            username: nanoid(10),
-          },
-        });
-      }
+				// this 'prismaUser' is used just let TS allow us to access 'user.username' which doens't exist on type 'AdapterUser' from nextAuth, but exists only on type 'User' from prismaClient
+				const prismaUser = user as User;
+				// console.log('\x1b[31m%s\x1b[0m', user);
+				if (!prismaUser.username) {
+					const dbUser = await db.user.update({
+						where: {
+							id: user.id,
+						},
+						data: {
+							username: nanoid(10),
+						},
+					});
+					// console.log('\x1b[33m%s\x1b[0m', dbUser);
+					token.username = dbUser.username;
+				} else {
+					token.username = prismaUser.username;
+				}
+			}
 
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-        username: dbUser.username,
-      };
-    },
-    async session({ token, session }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        session.user.username = token.username;
-      }
+			// this "session" is an object sent from the client side "update()"
+			if (trigger === 'update') {
+				session.username && (token.username = session.username);
+				session.image && (token.picture = session.image);
+			}
 
-      return session;
-    },
-  },
+			// note that the token.username is set only when the user signs in or up for the first time, and is only updated when we trigger an update() from the client
+
+			const retToken = {
+				id: token.id,
+				name: token.name,
+				email: token.email,
+				picture: token.picture,
+				username: token.username,
+			};
+
+			return retToken;
+		},
+		redirect() {
+			return '/';
+		},
+	},
 };
 
 export const getAuthSession = () => getServerSession(authOptions);

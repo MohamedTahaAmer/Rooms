@@ -1,117 +1,114 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
-import type { Comment, CommentVote, User } from '@prisma/client';
+import { Comment, CommentVote, User } from '@prisma/client';
 import CreateComment from './CreateComment';
 import PostComment from './comments/PostComment';
 
 type ExtendedComment = Comment & {
-  votes: CommentVote[];
-  author: User;
-  replies: ReplyComment[];
+	votes: CommentVote[];
+	author: User;
+	replies: ReplyComment[];
 };
 
 type ReplyComment = Comment & {
-  votes: CommentVote[];
-  author: User;
+	votes: CommentVote[];
+	author: User;
 };
 
 interface CommentsSectionProps {
-  postId: string;
-  comments: ExtendedComment[];
+	postId: string;
+	comments: ExtendedComment[];
 }
 
-// >(7:38)
 const CommentsSection = async ({ postId }: CommentsSectionProps) => {
-  const session = await getAuthSession();
+	const session = await getAuthSession();
 
-  // >(7:40) he dicieded not to have nested comments like in the actual reddit, but he will implement a top comment and replies to that comments, like the case in youtube
-  // ToDo: implement the actual reddit nesting, you will find how to do it in WDS
-  const comments = await db.comment.findMany({
-    where: {
-      postId: postId,
-      replyToId: null, // only fetch top-level comments
-    },
-    include: {
-      author: true,
-      votes: true,
-      replies: {
-        // include the replies for the top level comments
-        include: {
-          author: true,
-          votes: true,
-        },
-      },
-    },
-  });
+	const comments = await db.comment.findMany({
+		where: {
+			postId: postId,
+			replyToId: null, // only fetch top-level comments
+		},
+		include: {
+			author: true,
+			votes: true,
+			replies: {
+				// first level replies
+				include: {
+					author: true,
+					votes: true,
+				},
+			},
+		},
+	});
 
-  return (
-    <div className='mt-4 flex flex-col gap-y-4'>
-      <hr className='my-6 h-px w-full' />
+	return (
+		<div className='mt-4 flex flex-col gap-y-4'>
+			<hr className='my-6 h-px w-full' />
 
-      <CreateComment postId={postId} />
+			<CreateComment postId={postId} />
 
-      <div className='mt-4 flex flex-col gap-y-6'>
-        {comments
-          .filter((comment) => !comment.replyToId)
-          .map((topLevelComment) => {
-            const topLevelCommentVotesAmt = topLevelComment.votes.reduce(
-              (acc, vote) => {
-                if (vote.type === 'UP') return acc + 1;
-                if (vote.type === 'DOWN') return acc - 1;
-                return acc;
-              },
-              0
-            );
+			<div className='mt-4 flex flex-col gap-y-6'>
+				{comments
+					.filter((comment) => !comment.replyToId)
+					.map((topLevelComment) => {
+						const topLevelCommentVotesAmt = topLevelComment.votes.reduce(
+							(acc, vote) => {
+								if (vote.type === 'UP') return acc + 1;
+								if (vote.type === 'DOWN') return acc - 1;
+								return acc;
+							},
+							0,
+						);
 
-            const topLevelCommentVote = topLevelComment.votes.find(
-              (vote) => vote.userId === session?.user.id
-            );
+						const topLevelCommentVote = topLevelComment.votes.find(
+							(vote) => vote.userId === session?.user.id,
+						);
 
-            return (
-              <div key={topLevelComment.id} className='flex flex-col'>
-                <div className='mb-2'>
-                  <PostComment
-                    comment={topLevelComment}
-                    currentVote={topLevelCommentVote}
-                    votesAmt={topLevelCommentVotesAmt}
-                    postId={postId}
-                  />
-                </div>
+						return (
+							<div key={topLevelComment.id} className='flex flex-col'>
+								<div className='mb-2'>
+									<PostComment
+										comment={topLevelComment}
+										currentVote={topLevelCommentVote}
+										votesAmt={topLevelCommentVotesAmt}
+										postId={postId}
+									/>
+								</div>
 
-                {/* Render replies */}
-                {topLevelComment.replies
-                  .sort((a, b) => b.votes.length - a.votes.length) // Sort replies by most liked
-                  .map((reply) => {
-                    const replyVotesAmt = reply.votes.reduce((acc, vote) => {
-                      if (vote.type === 'UP') return acc + 1;
-                      if (vote.type === 'DOWN') return acc - 1;
-                      return acc;
-                    }, 0);
+								{/* Render replies */}
+								{topLevelComment.replies
+									.sort((a, b) => b.votes.length - a.votes.length) // Sort replies by most liked
+									.map((reply) => {
+										const replyVotesAmt = reply.votes.reduce((acc, vote) => {
+											if (vote.type === 'UP') return acc + 1;
+											if (vote.type === 'DOWN') return acc - 1;
+											return acc;
+										}, 0);
 
-                    const replyVote = reply.votes.find(
-                      (vote) => vote.userId === session?.user.id
-                    );
+										const replyVote = reply.votes.find(
+											(vote) => vote.userId === session?.user.id,
+										);
 
-                    return (
-                      <div
-                        key={reply.id}
-                        className='ml-2 border-l-2 border-zinc-200 py-2 pl-4'
-                      >
-                        <PostComment
-                          comment={reply}
-                          currentVote={replyVote}
-                          votesAmt={replyVotesAmt}
-                          postId={postId}
-                        />
-                      </div>
-                    );
-                  })}
-              </div>
-            );
-          })}
-      </div>
-    </div>
-  );
+										return (
+											<div
+												key={reply.id}
+												className='ml-2 border-l-2 border-background py-2 pl-4'
+											>
+												<PostComment
+													comment={reply}
+													currentVote={replyVote}
+													votesAmt={replyVotesAmt}
+													postId={postId}
+												/>
+											</div>
+										);
+									})}
+							</div>
+						);
+					})}
+			</div>
+		</div>
+	);
 };
 
 export default CommentsSection;
