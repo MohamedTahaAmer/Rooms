@@ -23,8 +23,8 @@
 
 .dark .ce-popover__item-icon,
 .dark .ce-conversion-tool__icon {
-	background-color: theme('colors.muted.DEFAULT');
-	box-shadow-shadow/10 dark:shadow-shadow/30 shadow: none;
+  background-color: theme('colors.muted.DEFAULT');
+  box-shadow: none;
 }
 
 .dark .cdx-search-field {
