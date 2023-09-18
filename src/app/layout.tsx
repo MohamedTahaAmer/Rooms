@@ -1,9 +1,9 @@
 import Navbar from '@/components/Navbar';
-import { cn } from '@/lib/utils';
-import { Inter } from 'next/font/google';
 import Providers from '@/components/Providers';
 import { Toaster } from '@/components/ui/Toaster';
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
 import '@/styles/globals.css';
 
@@ -26,7 +26,7 @@ export default function RootLayout({
 		<html
 			lang='en'
 			className={cn(
-				'light bg-background text-foreground antialiased',
+				'bg-background text-foreground antialiased',
 				inter.className,
 			)}
 		>

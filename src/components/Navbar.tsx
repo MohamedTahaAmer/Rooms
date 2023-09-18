@@ -1,14 +1,14 @@
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import Link from 'next/link';
 import { Icons } from './Icons';
-import { buttonVariants } from './ui/Button';
-import { UserAccountNav } from './UserAccountNav';
 import SearchBar from './SearchBar';
 import { ThemeToggle } from './ThemeToggle';
+import { UserAccountNav } from './UserAccountNav';
+import { buttonVariants } from './ui/Button';
 
 const Navbar = async () => {
-	const session = await getServerSession(authOptions);
+	const session = await getAuthSession();
+
 	return (
 		<div className='fixed inset-x-0 top-0 z-[10] h-fit border-b border-background bg-background py-2 shadow shadow-shadow/10 dark:shadow-shadow/30'>
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between gap-2'>

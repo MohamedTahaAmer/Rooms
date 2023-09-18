@@ -33,7 +33,7 @@ function CustomImageRenderer({ data }: any) {
         alt='image'
         className='object-contain'
         fill
-        sizes='100vw'
+        sizes='500pc'
         src={src}
       />
     </div>

@@ -67,7 +67,9 @@ const Layout = async ({
 					<ToFeedButton />
 
 					<div className='grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4'>
-						<div className='col-span-2 flex flex-col space-y-6'>{children}</div>
+						<div className='relative col-span-2 flex flex-col space-y-6'>
+							{children}
+						</div>
 
 						{/* info sidebar */}
 						<div className='order-first h-fit overflow-hidden rounded-lg shadow shadow-shadow/10 dark:shadow-shadow/30 md:order-last'>
@@ -109,7 +111,6 @@ const Layout = async ({
 								{isSubscribed && (
 									<Link
 										className={buttonVariants({
-											variant: 'outline',
 											className: 'mb-6 w-full',
 										})}
 										href={`/r/${slug}/submit`}

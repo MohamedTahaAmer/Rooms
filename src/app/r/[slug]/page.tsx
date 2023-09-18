@@ -1,4 +1,3 @@
-import MiniCreatePost from '@/components/MiniCreatePost';
 import PostFeed from '@/components/PostFeed';
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
@@ -42,10 +41,6 @@ const page = async ({ params }: PageProps) => {
 
 		return (
 			<>
-				<h1 className='h-14 text-3xl font-bold md:text-4xl'>
-					r/{subreddit.name}
-				</h1>
-				<MiniCreatePost session={session} />
 				{subreddit.posts && (
 					<PostFeed
 						initialPosts={subreddit.posts}

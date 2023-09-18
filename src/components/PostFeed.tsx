@@ -44,9 +44,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
 
 	const inifinitePosts = data?.pages.flatMap((page) => page)!;
 	const posts = inifinitePosts.length ? inifinitePosts : initialPosts;
-	console.log(posts.length);
-	console.log(inifinitePosts.length);
-	console.log(initialPosts.length);
+	// console.log(posts.length);
+	// console.log(inifinitePosts.length);
+	// console.log(initialPosts.length);
 	// never path object or arrays as a dependancy to the useEffect(), only path premetive values
 	const dataLength = data?.pages.slice(-1)[0].length;
 

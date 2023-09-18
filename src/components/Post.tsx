@@ -38,12 +38,12 @@ const Post: FC<PostProps> = ({
 					initialVote={_currentVote?.type}
 				/>
 
-				<div className='w-0 flex-1'>
+				<div className='w-0 flex-1 '>
 					<div className='mt-1 max-h-40 text-xs text-foreground'>
 						{subredditName ? (
 							<>
 								<Link
-									className='text-sm text-foreground underline underline-offset-2'
+									className='  text-sm text-foreground underline underline-offset-2'
 									href={`/r/${subredditName}`}
 								>
 									r/{subredditName}
@@ -55,19 +55,22 @@ const Post: FC<PostProps> = ({
 						{formatTimeToNow(new Date(post.createdAt))}
 					</div>
 					<Link href={`/r/${subredditName}/post/${post.id}`}>
-						<h1 className='py-2 text-lg font-semibold leading-6 text-foreground'>
+						<h1 className='truncate py-2 text-lg font-semibold leading-6 text-foreground'>
 							{post.title}
 						</h1>
 					</Link>
 
 					<div
-						className='relative max-h-40 w-full text-clip text-sm'
+						className='relative h-[160px] max-h-40 w-full overflow-hidden text-clip text-sm'
 						ref={pRef}
 					>
 						<EditorOutput content={post.content} />
-						{pRef.current?.clientHeight === 160 ? (
+						{pRef.current?.clientHeight && pRef.current.clientHeight >= 160 ? (
 							// blur bottom if content is too long
-							<div className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-background to-transparent'></div>
+							<Link
+								href={`/r/${subredditName}/post/${post.id}`}
+								className='absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-background to-transparent'
+							></Link>
 						) : null}
 					</div>
 				</div>

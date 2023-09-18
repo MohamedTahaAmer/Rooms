@@ -66,7 +66,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 						Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
 						{formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
 					</p>
-					<h1 className='py-2 text-xl font-semibold leading-6 text-foreground'>
+					<h1 className='truncate py-2 text-xl font-semibold leading-6 text-foreground'>
 						{post?.title ?? cachedPost.title}
 					</h1>
 

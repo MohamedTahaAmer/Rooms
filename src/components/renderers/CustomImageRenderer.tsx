@@ -7,7 +7,7 @@ function CustomImageRenderer({ data }: any) {
 
 	return (
 		<div className='relative min-h-[15rem] w-full'>
-			<Image alt='image' className='object-contain' fill src={src} />
+			<Image alt='image' sizes='500px' className='object-contain' fill src={src} />
 		</div>
 	);
 }

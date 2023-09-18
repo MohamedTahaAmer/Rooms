@@ -6,11 +6,14 @@ export async function GET(req: Request) {
 
 	if (!q) return new Response('Invalid query', { status: 400 });
 
-	const results = await db.subreddit.findMany({
+	const results = await db.post.findMany({
 		where: {
-			name: {
-				startsWith: q,
+			title: {
+				contains: q,
 			},
+		},
+		include: {
+			subreddit: true,
 		},
 		take: 9,
 	});
