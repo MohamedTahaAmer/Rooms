@@ -10,7 +10,7 @@ const Navbar = async () => {
 	const session = await getAuthSession();
 
 	return (
-		<div className='fixed inset-x-0 top-0 z-[10] h-fit border-b border-background bg-background py-2 shadow shadow-shadow/10 dark:shadow-shadow/30'>
+		<div className='shadoww fixed inset-x-0 top-0 z-[10] h-fit border-b border-background bg-background py-2'>
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between gap-2'>
 				{/* logo */}
 				<Link href='/' className='flex items-center gap-2'>

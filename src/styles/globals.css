@@ -92,7 +92,7 @@ html,
 }
 
 @layer components {
-	.shadow {
+	.shadoww {
 		@apply shadow shadow-shadow/10 dark:shadow-shadow/30;
 	}
 }

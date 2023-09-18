@@ -30,7 +30,7 @@ const Post: FC<PostProps> = ({
 	const pRef = useRef<HTMLParagraphElement>(null);
 
 	return (
-		<div className='rounded-md bg-background shadow shadow-shadow/10 dark:shadow-shadow/30'>
+		<div className='shadoww rounded-md bg-background'>
 			<div className='flex justify-between px-6 py-4'>
 				<PostVoteClient
 					postId={post.id}

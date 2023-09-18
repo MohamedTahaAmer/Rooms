@@ -85,7 +85,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 				<div className='hidden sm:block'>{wideVotes}</div>
 
 				<div className='w-full flex-1 rounded-sm bg-background sm:w-0 sm:p-4 sm:pt-0'>
-					<div className='rounded p-2 pb-6 pl-4  shadow shadow-shadow/10 dark:shadow-shadow/30'>
+					<div className='shadoww rounded p-2 pb-6  pl-4'>
 						<p className='mt-1  max-h-40 truncate text-xs text-foreground'>
 							Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
 							{formatTimeToNow(
@@ -98,7 +98,7 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 						<EditorOutput content={post?.content ?? cachedPost.content} />
 					</div>
 					<div className='py-2'></div>
-					<div className='flex w-full items-center justify-center overflow-hidden  shadow shadow-shadow/10 dark:shadow-shadow/30 sm:hidden'>
+					<div className='shadoww flex w-full items-center justify-center  overflow-hidden sm:hidden'>
 						{phoneVotes}
 					</div>
 					<Suspense

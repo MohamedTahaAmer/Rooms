@@ -72,7 +72,7 @@ const Layout = async ({
 						</div>
 
 						{/* info sidebar */}
-						<div className='order-first h-fit overflow-hidden rounded-lg shadow shadow-shadow/10 dark:shadow-shadow/30 md:order-last'>
+						<div className='shadoww order-first h-fit overflow-hidden rounded-lg md:order-last'>
 							<div className='bg-emerald-100 px-6 py-4'>
 								<p className='font-semibold dark:text-background'>
 									About r/{subreddit.name}

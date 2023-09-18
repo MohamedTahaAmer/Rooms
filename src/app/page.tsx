@@ -19,7 +19,7 @@ export default async function Home() {
 				{session ? <CustomFeed session={session} /> : <GeneralFeed />}
 
 				{/* subreddit info */}
-				<div className='order-first h-fit overflow-hidden rounded-lg shadow shadow-shadow/10 dark:shadow-shadow/30 md:order-last'>
+				<div className='shadoww order-first h-fit overflow-hidden rounded-lg md:order-last'>
 					<div className='bg-emerald-100 px-6 py-4'>
 						<p className='flex items-center gap-1.5 py-3 font-semibold dark:text-background'>
 							<HomeIcon className='h-4 w-4' />

@@ -79,7 +79,7 @@ const SearchPosts: FC<SearchPostsProps> = ({}) => {
 			/>
 
 			{input.length > 0 && (
-				<CommandList className='absolute inset-x-0 top-full rounded-b-md bg-background shadow shadow-shadow/10 dark:shadow-shadow/30'>
+				<CommandList className='shadoww absolute inset-x-0 top-full rounded-b-md bg-background'>
 					{isFetched && <CommandEmpty>No results found.</CommandEmpty>}
 					{(queryResults?.length ?? 0) > 0 ? (
 						<CommandGroup heading='Posts'>
