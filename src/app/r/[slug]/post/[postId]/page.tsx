@@ -41,36 +41,66 @@ const SubRedditPostPage = async ({ params }: SubRedditPostPageProps) => {
 
 	if (!post && !cachedPost) return notFound();
 
+	const wideVotes = (
+		<Suspense fallback={<PostVoteShell />}>
+			{/* @ts-expect-error server component */}
+			<PostVoteServer
+				postId={post?.id ?? cachedPost.id}
+				getData={async () => {
+					return await db.post.findUnique({
+						where: {
+							id: params.postId,
+						},
+						include: {
+							votes: true,
+						},
+					});
+				}}
+			/>
+		</Suspense>
+	);
+
+	const phoneVotes = (
+		<Suspense fallback={<PostVoteShell />}>
+			{/* @ts-expect-error server component */}
+			<PostVoteServer
+				postId={post?.id ?? cachedPost.id}
+				getData={async () => {
+					return await db.post.findUnique({
+						where: {
+							id: params.postId,
+						},
+						include: {
+							votes: true,
+						},
+					});
+				}}
+			/>
+		</Suspense>
+	);
+
 	return (
 		<div>
 			<div className='flex h-full flex-col items-center justify-between sm:flex-row sm:items-start'>
-				<Suspense fallback={<PostVoteShell />}>
-					{/* @ts-expect-error server component */}
-					<PostVoteServer
-						postId={post?.id ?? cachedPost.id}
-						getData={async () => {
-							return await db.post.findUnique({
-								where: {
-									id: params.postId,
-								},
-								include: {
-									votes: true,
-								},
-							});
-						}}
-					/>
-				</Suspense>
+				<div className='hidden sm:block'>{wideVotes}</div>
 
-				<div className='w-full flex-1 rounded-sm bg-background p-4 sm:w-0'>
-					<p className='mt-1 max-h-40 truncate text-xs text-foreground'>
-						Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
-						{formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
-					</p>
-					<h1 className='truncate py-2 text-xl font-semibold leading-6 text-foreground'>
-						{post?.title ?? cachedPost.title}
-					</h1>
-
-					<EditorOutput content={post?.content ?? cachedPost.content} />
+				<div className='w-full flex-1 rounded-sm bg-background sm:w-0 sm:p-4 sm:pt-0'>
+					<div className='rounded p-2 pb-6 pl-4  shadow shadow-shadow/10 dark:shadow-shadow/30'>
+						<p className='mt-1  max-h-40 truncate text-xs text-foreground'>
+							Posted by u/{post?.author.username ?? cachedPost.authorUsername}{' '}
+							{formatTimeToNow(
+								new Date(post?.createdAt ?? cachedPost.createdAt),
+							)}
+						</p>
+						<h1 className='truncate py-2 text-xl font-semibold leading-6 text-foreground'>
+							{post?.title ?? cachedPost.title}
+						</h1>
+						<EditorOutput content={post?.content ?? cachedPost.content} />
+					</div>
+					<div className='py-2'></div>
+					<div className='flex w-full items-center justify-center overflow-hidden  shadow shadow-shadow/10 dark:shadow-shadow/30 sm:hidden'>
+						{phoneVotes}
+					</div>
 					<Suspense
 						fallback={
 							<Loader2 className='h-5 w-5 animate-spin text-foreground' />

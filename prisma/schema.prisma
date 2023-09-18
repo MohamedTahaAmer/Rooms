@@ -1,14 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum VoteType {
@@ -17,8 +13,8 @@ enum VoteType {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
+  id                String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String  @db.Uuid
   type              String
   provider          String
   providerAccountId String
@@ -33,13 +29,13 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@index([userId])
 }
 
 model User {
-  id                String         @id @default(cuid())
+  id                String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name              String?
   email             String?        @unique
+  joinedAt          DateTime       @default(dbgenerated("now()"))
   emailVerified     DateTime?
   createdSubreddits Subreddit[]    @relation("CreatedBy")
   subscriptions     Subscription[]
@@ -52,92 +48,83 @@ model User {
   Post        Post[]
   Comment     Comment[]
   CommentVote CommentVote[]
+  Like        Like[]
 }
 
 model Subreddit {
-  id        String   @id @default(cuid())
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String   @unique
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(dbgenerated("now()"))
   updatedAt DateTime @updatedAt
   posts     Post[]
 
-  creatorId   String?
+  creatorId   String?        @db.Uuid
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
   subscribers Subscription[]
-
-  @@index([name])
-  @@index([creatorId])
 }
 
 model Subscription {
   user        User      @relation(fields: [userId], references: [id])
-  userId      String
+  userId      String    @db.Uuid
   subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
+  subredditId String    @db.Uuid
 
   @@id([userId, subredditId])
-  @@index([userId])
-  @@index([subredditId])
 }
 
 model Post {
-  id          String    @id @default(cuid())
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title       String
   content     Json?
-  createdAt   DateTime  @default(now())
+  createdAt   DateTime  @default(dbgenerated("now()"))
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
-  authorId    String
+  authorId    String    @db.Uuid
   subreddit   Subreddit @relation(fields: [subredditId], references: [id])
-  subredditId String
+  subredditId String    @db.Uuid
   comments    Comment[]
   votes       Vote[]
-
-  @@index([authorId])
-  @@index([subredditId])
 }
 
 model Comment {
-  id        String   @id @default(cuid())
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   text      String
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(dbgenerated("now()"))
   author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
+  authorId  String   @db.Uuid
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId    String
+  postId    String   @db.Uuid
 
-  replyToId String?
+  replyToId String?   @db.Uuid
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
 
   votes     CommentVote[]
-  commentId String?
-
-  @@index([replyToId])
-  @@index([postId])
-  @@index([authorId])
+  commentId String?       @db.Uuid
 }
 
 model Vote {
   user   User     @relation(fields: [userId], references: [id])
-  userId String
+  userId String   @db.Uuid
   post   Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String
+  postId String   @db.Uuid
   type   VoteType
 
   @@id([userId, postId])
-  @@index([postId])
-  @@index([userId])
 }
 
 model CommentVote {
   user      User     @relation(fields: [userId], references: [id])
-  userId    String
+  userId    String   @db.Uuid
   comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  commentId String
+  commentId String   @db.Uuid
   type      VoteType
 
   @@id([userId, commentId])
-  @@index([commentId])
-  @@index([userId])
+}
+
+model Like {
+  id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.Uuid
 }

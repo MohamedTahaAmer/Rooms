@@ -90,3 +90,9 @@ html,
 			'calt' 1;
 	}
 }
+
+@layer components {
+	.shadow {
+		@apply shadow shadow-shadow/10 dark:shadow-shadow/30;
+	}
+}
