@@ -2,9 +2,9 @@ import { getAuthSession } from '@/lib/auth';
 import Link from 'next/link';
 import { Icons } from './Icons';
 import SearchBar from './SearchBar';
-import { ThemeToggle } from './ThemeToggle';
 import { UserAccountNav } from './UserAccountNav';
 import { buttonVariants } from './ui/Button';
+import ThemeToggleInLine from './ThemeToggleInLine';
 
 const Navbar = async () => {
 	const session = await getAuthSession();
@@ -24,7 +24,7 @@ const Navbar = async () => {
 				<SearchBar />
 
 				<div className='flex items-center justify-center gap-x-4'>
-					<ThemeToggle />
+					<ThemeToggleInLine />
 
 					{/* actions */}
 					{session?.user ? (
