@@ -67,13 +67,13 @@ const Layout = async ({
 				<div>
 					<ToFeedButton />
 
-					<div className='grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4'>
+					<div className='grid grid-cols-1 gap-y-4 py-6 lg:grid-cols-3 lg:gap-x-4'>
 						<div className='relative col-span-2 flex flex-col space-y-6'>
 							{children}
 						</div>
 
 						{/* info sidebar */}
-						<div className='shadoww order-first h-fit overflow-hidden rounded-lg md:order-last'>
+						<div className='shadoww order-first h-fit overflow-hidden rounded-lg lg:order-last'>
 							<div className='bg-violet-200 px-6 py-4 dark:bg-violet-400'>
 								<p className='font-semibold dark:text-background'>
 									About r/{subreddit.name}
