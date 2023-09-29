@@ -1,22 +1,26 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // const subreddit = await prisma.subreddit.upsert({
-  //   where: { name: "Test" },
-  //   update: {},
-  //   create: {
-  //     creatorId: "Test creator",
-  //     name: "Test",
-  //   },
-  // });
-  // subreddit
+	const subreddit = await prisma.subreddit.createMany({
+		data: [
+			{ name: 'TypeScript' },
+			{ name: 'React' },
+			{ name: 'Next.js' },
+			{ name: 'Postgres' },
+			{ name: 'Prisma' },
+			{ name: 'NextAuth' },
+			{ name: 'React Query' },
+			{ name: 'Tailwind' },
+			{ name: 'Shadcn-UI' },
+		],
+	});
 }
 main()
-  .then(() => prisma.$disconnect())
-  .catch(async (e) => {
-    e;
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+	.then(() => prisma.$disconnect())
+	.catch(async (e) => {
+		e;
+		await prisma.$disconnect();
+		process.exit(1);
+	});

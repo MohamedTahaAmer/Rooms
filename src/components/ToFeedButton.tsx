@@ -16,7 +16,7 @@ const ToFeedButton = () => {
 	return (
 		<Link href={subredditPath} className={buttonVariants({ variant: 'ghost' })}>
 			<ChevronLeft className='mr-1 h-4 w-4' />
-			{subredditPath === '/' ? 'Back home' : 'Back to community'}
+			{subredditPath === '/' ? 'Back home' : 'Back to Room.'}
 		</Link>
 	);
 };

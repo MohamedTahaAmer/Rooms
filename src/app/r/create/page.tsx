@@ -62,7 +62,7 @@ const Page = () => {
 		<div className='container mx-auto flex h-full max-w-3xl items-center'>
 			<div className='relative h-fit w-full space-y-6 rounded-lg bg-background p-4'>
 				<div className='flex items-center justify-between'>
-					<h1 className='text-xl font-semibold'>Create a Community</h1>
+					<h1 className='text-xl font-semibold'>Create a Room.</h1>
 				</div>
 
 				<hr className='h-px bg-red-500' />

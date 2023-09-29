@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { startTransition } from 'react';
 import { useToast } from '../hooks/use-toast';
 import { useCustomToasts } from '@/hooks/use-custom-toasts';
+import { DoorOpen, LeafIcon } from 'lucide-react';
 
 interface SubscribeLeaveToggleProps {
 	isSubscribed: boolean;
@@ -88,13 +89,15 @@ const SubscribeLeaveToggle = ({
 	});
 
 	return isSubscribed ? (
-		<Button
-			className='mb-4 mt-1 w-full'
-			isLoading={isUnsubLoading}
-			onClick={() => unsubscribe()}
-		>
-			Leave community
-		</Button>
+		<div className='mb-4 mt-1 flex w-full justify-center'>
+			<Button
+				variant={'subtle'}
+				isLoading={isUnsubLoading}
+				onClick={() => unsubscribe()}
+			>
+				<DoorOpen /> <span className='pl-2  font-medium'>Leave Room.</span>
+			</Button>
+		</div>
 	) : (
 		<Button
 			className='mb-4 mt-1 w-full'

@@ -9,6 +9,9 @@
 		"lint": "next lint",
 		"postinstall": "prisma generate"
 	},
+	"prisma": {
+		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+	},
 	"dependencies": {
 		"@editorjs/code": "^2.8.0",
 		"@editorjs/editorjs": "^2.27.0",

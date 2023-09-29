@@ -4,6 +4,7 @@ import { buttonVariants } from '@/components/ui/Button';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { format } from 'date-fns';
+import { Edit } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -99,6 +100,18 @@ const Layout = async ({
 									</div>
 								) : null}
 
+								{isSubscribed && (
+									<Link
+										className={buttonVariants({
+											className: 'mb-1 w-full',
+										})}
+										href={`/r/${slug}/submit`}
+									>
+										<Edit className='aspect-square w-4' />
+										<span className='pl-2'>Create a Post.</span>
+									</Link>
+								)}
+
 								{subreddit.creatorId !== session?.user?.id ? (
 									<SubscribeLeaveToggle
 										isSubscribed={isSubscribed}
@@ -106,16 +119,6 @@ const Layout = async ({
 										subredditName={subreddit.name}
 									/>
 								) : null}
-								{isSubscribed && (
-									<Link
-										className={buttonVariants({
-											className: 'mb-6 w-full',
-										})}
-										href={`/r/${slug}/submit`}
-									>
-										Create Post
-									</Link>
-								)}
 							</dl>
 						</div>
 					</div>

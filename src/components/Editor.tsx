@@ -15,6 +15,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 import '@/styles/editor.css';
+import { Button } from './ui/Button';
 
 type FormData = z.infer<typeof PostValidator>;
 
@@ -41,7 +42,7 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 	const [isMounted, setIsMounted] = useState<boolean>(false);
 	const pathname = usePathname();
 
-	const { mutate: createPost } = useMutation({
+	const { mutate: createPost, isLoading } = useMutation({
 		mutationFn: async ({
 			title,
 			content,
@@ -210,6 +211,11 @@ export const Editor: React.FC<EditorProps> = ({ subredditId }) => {
 						</kbd>{' '}
 						to open the command menu.
 					</p>
+				</div>
+				<div className='mt-6 flex w-full justify-center'>
+					<Button isLoading={isLoading} className='w-full'>
+						Post
+					</Button>
 				</div>
 			</form>
 		</div>
