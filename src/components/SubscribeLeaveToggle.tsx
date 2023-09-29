@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { startTransition } from 'react';
 import { useToast } from '../hooks/use-toast';
 import { useCustomToasts } from '@/hooks/use-custom-toasts';
-import { DoorOpen, LeafIcon } from 'lucide-react';
+import { DoorOpen } from 'lucide-react';
 
 interface SubscribeLeaveToggleProps {
 	isSubscribed: boolean;

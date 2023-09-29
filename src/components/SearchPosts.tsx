@@ -4,7 +4,7 @@ import type { Post, Subreddit } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import {
@@ -25,7 +25,6 @@ const SearchPosts: FC<SearchPostsProps> = ({}) => {
 	const [input, setInput] = useState<string>('');
 	const pathname = usePathname();
 	const commandRef = useRef<HTMLDivElement>(null);
-	const router = useRouter();
 
 	useOnClickOutside(commandRef, () => {
 		setInput('');
