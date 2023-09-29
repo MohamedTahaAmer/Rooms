@@ -4,7 +4,7 @@ import { buttonVariants } from '@/components/ui/Button';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { format } from 'date-fns';
-import { EditIcon } from 'lucide-react';
+import { ClipboardEdit } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -107,7 +107,7 @@ const Layout = async ({
 										})}
 										href={`/r/${slug}/submit`}
 									>
-										<EditIcon className='aspect-square w-4' />
+										<ClipboardEdit className='aspect-square w-4' />
 										<span className='pl-2'>Create a Post.</span>
 									</Link>
 								)}
