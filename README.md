@@ -26,6 +26,9 @@ Built with the Next.js App Router, TypeScript & Tailwind
 - [x] Optimistic updates for a great user experience.
 - [x] Modern data fetching using React-Query.
 - [x] Image uploads using Upload Thing & link previews.
+- [ ] Role-Based Authentications.
+- [ ] Real-Time Chats between members.
+- [ ] Premium Subscriptions.
 - [x] ... and much more
 
 ## Acknowledgements
