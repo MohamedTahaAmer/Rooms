@@ -56,9 +56,8 @@
 		"lodash.debounce": "^4.0.8",
 		"lucide-react": "^0.221.0",
 		"nanoid": "^4.0.2",
-		"next": "C:/Users/moham/AppData/Local/aa-my-cache/next-13.15.2/node_modules/next",
-		"prisma": "C:/Users/moham/AppData/Local/aa-my-cache/prisma-5.3.1/node_modules/prisma",
-		
+		"next": "13.15.3",
+		"prisma": "5.3.1",
 		"next-auth": "^4.22.1",
 		"next-themes": "^0.2.1",
 		"path-to-regexp": "^6.2.1",
