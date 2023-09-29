@@ -40,7 +40,7 @@ const Post: FC<PostProps> = ({
 
 				<div className='w-0 flex-1 '>
 					<div className='absolute inset-x-0 top-0 rounded-t-md bg-violet-200 pl-2 dark:bg-violet-400 dark:text-background md:left-[90px] md:rounded-tl-none '>
-						<div className='mt-1 max-h-40 text-xs text-foreground dark:text-background'>
+						<div className='mt-1 max-h-40 truncate text-xs text-foreground dark:text-background'>
 							{subredditName ? (
 								<>
 									<Link

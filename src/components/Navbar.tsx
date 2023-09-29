@@ -5,6 +5,7 @@ import { UserAccountNav } from './UserAccountNav';
 import { buttonVariants } from './ui/Button';
 import ThemeToggleInLine from './ThemeToggleInLine';
 import Image from 'next/image';
+import { LogIn } from 'lucide-react';
 
 const Navbar = async () => {
 	const session = await getAuthSession();
@@ -32,9 +33,18 @@ const Navbar = async () => {
 					{session?.user ? (
 						<UserAccountNav user={session.user} />
 					) : (
-						<Link href='/sign-in' className={buttonVariants()}>
-							Sign In
-						</Link>
+						<>
+							<Link
+								href='/sign-in'
+								className={buttonVariants({ className: 'hidden md:block' })}
+							>
+								Sign In
+							</Link>
+							<Link href='/sign-in' className='md:hidden'>
+								<span className='sr-only'>Sign In</span>
+								<LogIn />
+							</Link>
+						</>
 					)}
 				</div>
 			</div>
