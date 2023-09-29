@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { titles } from './titles';
 import { content } from './content';
-import nextAuth from 'next-auth';
 
 const db = new PrismaClient();
 
@@ -120,14 +119,21 @@ async function main() {
 					subredditId: ids.Tailwind,
 					content,
 				},
+				{
+					title: titles.nextAuth[i],
+					authorId,
+					subredditId: ids.NextAuth,
+					content,
+				},
 			],
 		});
 	});
+
+	console.log((await db.post.findMany()).length);
 }
 main()
 	.then(() => db.$disconnect())
-	.catch(async (e) => {
-		e;
+	.catch(async () => {
 		await db.$disconnect();
 		process.exit(1);
 	});

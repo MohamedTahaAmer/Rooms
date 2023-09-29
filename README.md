@@ -2,6 +2,18 @@
 
 Built with the Next.js App Router, TypeScript & Tailwind
 
+# Dark Mode
+
+![Rooms Home Dark Mode](https://res.cloudinary.com/dqe9ksk0p/image/upload/v1696011029/Rooms/2023-09-29_21_05_22-Rooms_dkrvoe.jpg)
+
+# Light Mode
+
+![Rooms Home Light Mode](https://res.cloudinary.com/dqe9ksk0p/image/upload/v1696011028/Rooms/2023-09-29_21_05_33-Rooms_sgucm8.jpg)
+
+# Small Screens
+
+![Rooms Home Small Screens](https://res.cloudinary.com/dqe9ksk0p/image/upload/v1696011853/Rooms/t_zgqz0m.jpg)
+
 ## Features
 
 - [x] Dark mode Support.
