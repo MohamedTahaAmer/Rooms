@@ -73,14 +73,14 @@ const SearchSubreddits: FC<SearchSubredditsProps> = ({}) => {
 				}}
 				value={input}
 				className='border-none outline-none ring-0 focus:border-none focus:outline-none'
-				placeholder='Search communities...'
+				placeholder='Search Rooms...'
 			/>
 
 			{input.length > 0 && (
 				<CommandList className='shadoww absolute inset-x-0 top-full rounded-b-md bg-background'>
 					{isFetched && <CommandEmpty>No results found.</CommandEmpty>}
 					{(queryResults?.length ?? 0) > 0 ? (
-						<CommandGroup heading='Communities'>
+						<CommandGroup heading='Rooms'>
 							{queryResults?.map((subreddit) => (
 								<CommandItem
 									onSelect={(e) => {

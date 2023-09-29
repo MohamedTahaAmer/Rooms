@@ -2,6 +2,7 @@ import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 import { db } from '@/lib/db';
 import PostFeed from '../PostFeed';
 import type { Session } from 'next-auth';
+import GeneralFeed from './GeneralFeed';
 
 const CustomFeed = async ({ session }: { session: Session }) => {
 	try {
@@ -14,6 +15,11 @@ const CustomFeed = async ({ session }: { session: Session }) => {
 				subreddit: true,
 			},
 		});
+
+		if (!followedCommunities) {
+			// @ts-expect-error
+			return <GeneralFeed />;
+		}
 
 		const posts = await db.post.findMany({
 			where: {

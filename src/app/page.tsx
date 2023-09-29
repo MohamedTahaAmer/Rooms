@@ -20,7 +20,7 @@ export default async function Home() {
 
 				{/* subreddit info */}
 				<div className='shadoww order-first h-fit overflow-hidden rounded-lg md:order-last'>
-					<div className='bg-emerald-100 px-6 py-4'>
+					<div className='bg-amber-200 px-6 py-4'>
 						<p className='flex items-center gap-1.5 py-3 font-semibold dark:text-background'>
 							<HomeIcon className='h-4 w-4' />
 							Home
@@ -30,7 +30,7 @@ export default async function Home() {
 						<div className='flex justify-between gap-x-4 py-3'>
 							<p className='text-foreground'>
 								Your personal Rooms frontpage. Come here to check in with your
-								favorite communities.
+								favorite Rooms.
 							</p>
 						</div>
 
@@ -40,7 +40,7 @@ export default async function Home() {
 							})}
 							href={`/r/create`}
 						>
-							Create Community
+							Create a Room
 						</Link>
 					</dl>
 				</div>
