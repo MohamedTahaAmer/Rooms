@@ -95,9 +95,7 @@ const Layout = async ({
 								</div>
 								{subreddit.creatorId === session?.user?.id ? (
 									<div className='flex justify-between gap-x-4 py-3'>
-										<dt className='text-foreground'>
-											You created this community
-										</dt>
+										<dt className='text-foreground'>You created this Room.</dt>
 									</div>
 								) : null}
 
