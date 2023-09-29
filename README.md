@@ -29,7 +29,6 @@ Built with the Next.js App Router, TypeScript & Tailwind
 - [ ] Role-Based Authentications.
 - [ ] Real-Time Chats between members.
 - [ ] Premium Subscriptions.
-- [x] ... and much more
 
 ## Acknowledgements
 
