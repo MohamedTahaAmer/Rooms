@@ -1,78 +1,34 @@
-# Rooms - A Modern Fullstack Reddit Clone
+# Welcome to Rooms, where you can share, discuss, and explore your interests with like-minded individuals.
 
 Built with the Next.js App Router, TypeScript & Tailwind
 
 ## Features
 
-- Infinite scrolling for dynamically loading posts
-- Authentication using NextAuth & Google
-- Custom feed for authenticated users
-- Advanced caching using [Upstash Redis](https://upstash.com/?utm_source=Josh2)
-- Optimistic updates for a great user experience
-- Modern data fetching using React-Query
-- A beautiful and highly functional post editor
-- Image uploads & link previews
-- Full comment functionality with nested replies
-- ... and much more
-
-## Getting started
-
-To get started with this project, run
-
-```bash
-  git clone -b starter-code https://github.com/joschan21/Rooms.git
-```
-
-and copy these .env.example variables into a separate .env file:
-
-```bash
-DATABASE_URL=
-NEXTAUTH_SECRET=
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-UPLOADTHING_SECRET=
-UPLOADTHING_APP_ID=
-
-REDIS_URL=
-REDIS_SECRET=
-```
-
-if you'd like, you can paste this snippet for quick component creation (optional):
-
-```typescript
-// vscode settings -> user snippets -> typescriptreact.json
-```
-
-```json
-"Typescript React Function Component": {
-    "prefix": "fc",
-    "body": [
-      "import { FC } from 'react'",
-      "",
-      "interface ${TM_FILENAME_BASE}Props {",
-      "  $1",
-      "}",
-      "",
-      "const $TM_FILENAME_BASE: FC<${TM_FILENAME_BASE}Props> = ({$2}) => {",
-      "  return <div>$TM_FILENAME_BASE</div>",
-      "}",
-      "",
-      "export default $TM_FILENAME_BASE"
-    ],
-    "description": "Typescript React Function Component"
-  },
-```
-
-and that's all you need to get started!
+- [x] Dark mode Support.
+- [x] Authentication using NextAuth & Google.
+- [x] Infinite scrolling for dynamically loading posts.
+- [x] A Notion Like post editor.
+- [x] Full comment functionality with nested replies.
+- [x] Custom feed for authenticated users.
+- [x] Caching of popular posts using Upsatch Redis.
+- [x] Optimistic updates for a great user experience.
+- [x] Modern data fetching using React-Query.
+- [x] Image uploads using Upload Thing & link previews.
+- [x] ... and much more
 
 ## Acknowledgements
 
-- [Upstash Redis](https://upstash.com/?utm_source=Josh2) for making this possible
-- [Code with Antonio](https://www.youtube.com/@codewithantonio) for thumbnail design inspiration
-- Shadcn's [Taxonomy respository](https://github.com/shadcn/taxonomy) for showcasing the post editor
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+- [Josh](https://www.youtube.com/@joshtriedcoding)
+- [maximilian schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller/)
+- [Jack Harrington](https://www.youtube.com/@jherr)
+- [Jonas Schmedtmann](https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/#instructor-1)
+- [Andrei Neagoie - ZTM](https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/#instructor-1)
+- [John Smilga](https://www.udemy.com/course/nodejs-tutorial-and-projects-course/#instructor-1)
+- [Colt Steele](https://www.udemy.com/course/the-web-developer-bootcamp/#instructor-1)
+- [Free Code Camp](https://www.youtube.com/@freecodecamp)
+- [Elzero Web School](https://www.youtube.com/@ElzeroWebSchool)
+- [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified)
+- [Dave Gray](https://www.youtube.com/@DaveGrayTeachesCode)
+- [Simon Wiss](https://www.youtube.com/@Simonswissdev)
+- [JavaScript Mastery](https://www.youtube.com/@javascriptmastery)
+- [Code With Antonio](https://www.youtube.com/@codewithantonio)
