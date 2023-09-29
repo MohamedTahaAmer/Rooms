@@ -1,36 +1,72 @@
 import { PrismaClient } from '@prisma/client';
 import { titles } from './titles';
 import { content } from './content';
+import nextAuth from 'next-auth';
 
 const db = new PrismaClient();
 
 async function main() {
-	await db.subreddit.createMany({
-		data: [
-			{ name: 'TypeScript' },
-			{ name: 'React' },
-			{ name: 'Next.js' },
-			{ name: 'Postgres' },
-			{ name: 'Prisma' },
-			{ name: 'NextAuth' },
-			{ name: 'React-Query' },
-			{ name: 'Tailwind' },
-			{ name: 'Shadcn-UI' },
-		],
+	const Next = await db.subreddit.upsert({
+		where: { name: 'Next.js' },
+		create: { name: 'Next.js' },
+		update: {},
+	});
+	const React = await db.subreddit.upsert({
+		where: { name: 'React' },
+		create: { name: 'React' },
+		update: {},
+	});
+	const TypeScript = await db.subreddit.upsert({
+		where: { name: 'TypeScript' },
+		create: { name: 'TypeScript' },
+		update: {},
+	});
+	const Postgres = await db.subreddit.upsert({
+		where: { name: 'Postgres' },
+		create: { name: 'Postgres' },
+		update: {},
+	});
+	const Prisma = await db.subreddit.upsert({
+		where: { name: 'Prisma' },
+		create: { name: 'Prisma' },
+		update: {},
+	});
+	const NextAuth = await db.subreddit.upsert({
+		where: { name: 'NextAuth' },
+		create: { name: 'NextAuth' },
+		update: {},
+	});
+	const RQ = await db.subreddit.upsert({
+		where: { name: 'React-Query' },
+		create: { name: 'React-Query' },
+		update: {},
+	});
+	const Tailwind = await db.subreddit.upsert({
+		where: { name: 'Tailwind' },
+		create: { name: 'Tailwind' },
+		update: {},
+	});
+	const Shad = await db.subreddit.upsert({
+		where: { name: 'Shadcn-UI' },
+		create: { name: 'Shadcn-UI' },
+		update: {},
 	});
 
-	const authorId = 'd4ad2f3e-e682-4c63-8a99-e5a9dde9b20a';
+	const user = await db.user.findFirst();
+	if (!user) return;
+
+	const authorId = user.id;
 	const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 	const ids = {
-		Next: 'bc7ce76d-7346-4f5c-b1a7-3f1551300334',
-		TS: '774c48c7-7098-4766-ba38-64b562af5c9d',
-		React: '9d30dd80-c572-4c61-8171-cd2353a6fc2f',
-		RQ: '52e9f518-5210-4cf9-b2ce-4ca18af321c8',
-		Tailwind: 'd4606a69-7f7c-45b2-be93-d8476ccbf7cd',
-		Shad: '8f35c58c-d001-4bcf-9061-b41bd25e820e',
-		Prisma: 'c02e93f7-151f-4a8e-90a9-dc86a37c92d0',
-		NextAuth: 'b973e5f1-3e64-43e0-b9d9-15e24cb9d28d',
-		postgres: '6e3ef387-2ba2-4c0d-a23d-574177c47399',
+		Next: Next.id,
+		TS: TypeScript.id,
+		React: React.id,
+		RQ: RQ.id,
+		Tailwind: Tailwind.id,
+		Shad: Shad.id,
+		Prisma: Prisma.id,
+		NextAuth: NextAuth.id,
+		postgres: Postgres.id,
 	};
 
 	nums.map(async (i) => {

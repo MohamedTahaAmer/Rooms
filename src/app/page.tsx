@@ -23,7 +23,7 @@ export default async function Home() {
 				{/* subreddit info */}
 				<div className='order-first  md:order-last'>
 					<div className='shadoww h-fit overflow-hidden rounded-lg '>
-						<div className='bg-amber-200 px-6 py-4'>
+						<div className='bg-violet-200 px-6 py-4 dark:bg-violet-400'>
 							<p className='flex items-center gap-1.5 py-3 font-semibold dark:text-background'>
 								<HomeIcon className='h-4 w-4' />
 								Home
@@ -49,7 +49,7 @@ export default async function Home() {
 					</div>
 					<div className='p-2'></div>
 					<div className='shadoww  h-fit overflow-hidden rounded-lg'>
-						<div className='bg-amber-200 px-6 py-4'>
+						<div className='bg-violet-200 px-6 py-4 dark:bg-violet-400'>
 							<p className='flex items-center gap-1.5 py-3 font-semibold dark:text-background'>
 								<span className='relative aspect-square  w-5  '>
 									<Image src='/table.svg' fill sizes='100px' alt='Table' />

@@ -95,7 +95,7 @@ const SubscribeLeaveToggle = ({
 				isLoading={isUnsubLoading}
 				onClick={() => unsubscribe()}
 			>
-				<DoorOpen /> <span className='pl-2  font-medium'>Leave Room.</span>
+				<DoorOpen /> <span className='pl-2  font-medium'>Leave This Room.</span>
 			</Button>
 		</div>
 	) : (

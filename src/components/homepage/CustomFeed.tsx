@@ -16,7 +16,7 @@ const CustomFeed = async ({ session }: { session: Session }) => {
 			},
 		});
 
-		if (!followedCommunities) {
+		if (!followedCommunities.length) {
 			// @ts-expect-error
 			return <GeneralFeed />;
 		}

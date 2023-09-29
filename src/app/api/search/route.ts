@@ -9,6 +9,7 @@ export async function GET(req: Request) {
 	const results = await db.subreddit.findMany({
 		where: {
 			name: {
+				mode: 'insensitive', // Case-insensitive search
 				startsWith: q,
 			},
 		},

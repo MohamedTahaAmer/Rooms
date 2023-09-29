@@ -10,6 +10,7 @@ export async function GET(req: Request) {
 		where: {
 			title: {
 				contains: q,
+				mode: 'insensitive',
 			},
 		},
 		include: {
