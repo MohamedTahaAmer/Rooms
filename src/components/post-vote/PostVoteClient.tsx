@@ -23,6 +23,12 @@ const PostVoteClient = ({
 	initialVotesAmt,
 	initialVote,
 }: PostVoteClientProps) => {
+	console.log('Expression');
+	console.log({
+		postId,
+		initialVotesAmt,
+		initialVote,
+	});
 	const { loginToast } = useCustomToasts();
 	const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
 	const [currentVote, setCurrentVote] = useState(initialVote);

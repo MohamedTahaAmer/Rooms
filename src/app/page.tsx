@@ -16,12 +16,12 @@ export default async function Home() {
 	return (
 		<>
 			<h1 className='text-3xl font-bold md:text-4xl'>Your feed</h1>
-			<div className='grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4'>
+			<div className='grid grid-cols-1 gap-y-4 py-6 md:gap-x-4 lg:grid-cols-3'>
 				{/* @ts-expect-error server component */}
 				{session ? <CustomFeed session={session} /> : <GeneralFeed />}
 
 				{/* subreddit info */}
-				<div className='order-first  md:order-last'>
+				<div className='hidden lg:block'>
 					<div className='shadoww h-fit overflow-hidden rounded-lg '>
 						<div className='bg-violet-200 px-6 py-4 dark:bg-violet-400'>
 							<p className='flex items-center gap-1.5 py-3 font-semibold dark:text-background'>

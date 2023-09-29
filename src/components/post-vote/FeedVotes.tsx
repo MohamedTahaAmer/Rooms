@@ -8,7 +8,7 @@ import { VoteType } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from '../../hooks/use-toast';
 import { Button } from '../ui/Button';
 
@@ -28,11 +28,9 @@ const FeedVotes = ({
 	const [currentVote, setCurrentVote] = useState(initialVote);
 	const prevVote = usePrevious(currentVote);
 
-	// // ensure sync with server
-	// - this is doing no thing,
-	// useEffect(() => {
-	// 	setCurrentVote(initialVote);
-	// }, [initialVote]);
+	useEffect(() => {
+		setCurrentVote(initialVote);
+	}, [initialVote]);
 
 	const { mutate: vote } = useMutation({
 		mutationFn: async (type: VoteType) => {
@@ -79,7 +77,7 @@ const FeedVotes = ({
 	});
 
 	return (
-		<div className=' flex  gap-4 max-sm:absolute max-sm:bottom-2 max-sm:right-3 sm:w-20 sm:flex-col sm:gap-0 sm:pb-0 sm:pr-6'>
+		<div className=' flex  gap-4 max-md:absolute max-md:bottom-2 max-md:right-3 md:w-[75px] md:flex-col md:gap-0 md:pb-0 md:pr-6'>
 			{/* upvote */}
 			<Button
 				onClick={() => vote('UP')}

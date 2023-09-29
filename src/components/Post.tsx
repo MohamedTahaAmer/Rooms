@@ -39,29 +39,34 @@ const Post: FC<PostProps> = ({
 				/>
 
 				<div className='w-0 flex-1 '>
-					<div className='mt-1 max-h-40 text-xs text-foreground'>
-						{subredditName ? (
-							<>
-								<Link
-									className='  text-sm text-foreground underline underline-offset-2'
-									href={`/r/${subredditName}`}
-								>
-									r/{subredditName}
-								</Link>
-								<span className='px-1'>•</span>
-							</>
-						) : null}
-						<span>Posted by u/{post.author.username}</span>{' '}
-						{formatTimeToNow(new Date(post.createdAt))}
+					<div className='absolute inset-x-0 top-0 rounded-t-md bg-violet-200 pl-2 dark:bg-violet-400 dark:text-background md:left-[90px] md:rounded-tl-none '>
+						<div className='mt-1 max-h-40 text-xs text-foreground dark:text-background'>
+							{subredditName ? (
+								<>
+									<Link
+										className=' text-sm text-foreground underline underline-offset-2 dark:text-background'
+										href={`/r/${subredditName}`}
+									>
+										r/{subredditName}
+									</Link>
+									<span className='px-1 dark:text-background'>•</span>
+								</>
+							) : null}
+							<span className='dark:text-background'>
+								Posted by u/{post.author.username}
+							</span>{' '}
+							{formatTimeToNow(new Date(post.createdAt))}
+						</div>
+						<Link href={`/r/${subredditName}/post/${post.id}`}>
+							<h1 className='truncate py-2 text-lg font-semibold leading-6 text-foreground dark:text-background'>
+								{post.title}
+							</h1>
+						</Link>
 					</div>
-					<Link href={`/r/${subredditName}/post/${post.id}`}>
-						<h1 className='truncate py-2 text-lg font-semibold leading-6 text-foreground'>
-							{post.title}
-						</h1>
-					</Link>
+					<div className='py-6'></div>
 
 					<div
-						className='relative h-[160px] max-h-40 w-full overflow-hidden text-clip text-sm'
+						className='relative ml-[-8px] h-[160px] max-h-40 w-full overflow-hidden text-clip text-sm'
 						ref={pRef}
 					>
 						<EditorOutput content={post.content} />
