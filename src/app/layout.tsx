@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
 	title: 'Rooms',
 	description: 'A Reddit clone built with Next.js and TypeScript.',
-	icons: '/fav.svg',
+	icons: '/favIcon.svg',
 };
 
 export default function RootLayout({

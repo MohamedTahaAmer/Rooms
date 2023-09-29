@@ -1,10 +1,10 @@
 import { getAuthSession } from '@/lib/auth';
 import Link from 'next/link';
-import { Icons } from './Icons';
 import SearchBar from './SearchBar';
 import { UserAccountNav } from './UserAccountNav';
 import { buttonVariants } from './ui/Button';
 import ThemeToggleInLine from './ThemeToggleInLine';
+import Image from 'next/image';
 
 const Navbar = async () => {
 	const session = await getAuthSession();
@@ -14,8 +14,10 @@ const Navbar = async () => {
 			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between gap-2'>
 				{/* logo */}
 				<Link href='/' className='flex items-center gap-2'>
-					<Icons.logo className='h-8 w-8 sm:h-6 sm:w-6' />
-					<p className='hidden text-sm font-medium text-foreground md:block'>
+					<div className='relative aspect-square  w-10  '>
+						<Image src='/favIcon.svg' fill sizes='100px' alt='Logo' />
+					</div>
+					<p className='hidden text-2xl font-bold text-foreground md:block'>
 						Rooms
 					</p>
 				</Link>
