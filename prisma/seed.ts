@@ -120,9 +120,9 @@ async function main() {
 					content,
 				},
 				{
-					title: titles.nextAuth[i],
+					title: titles.prisma[i],
 					authorId,
-					subredditId: ids.NextAuth,
+					subredditId: ids.Prisma,
 					content,
 				},
 			],

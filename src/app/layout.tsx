@@ -30,7 +30,13 @@ export default function RootLayout({
 				inter.className,
 			)}
 		>
-			<body className='min-h-screen bg-background pt-12 antialiased'>
+			{/* <body className='min-h-screen bg-background pt-12 antialiased'> */}
+			<body
+				className={cn(
+					'min-h-screen bg-background pt-12 antialiased',
+					inter.className,
+				)}
+			>
 				<Providers>
 					{/* @ts-expect-error Server Component */}
 					<Navbar />

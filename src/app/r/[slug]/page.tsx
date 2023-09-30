@@ -1,6 +1,5 @@
 import PostFeed from '@/components/PostFeed';
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
-import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
 
@@ -11,10 +10,7 @@ interface PageProps {
 }
 
 const page = async ({ params }: PageProps) => {
-	try {
 		const { slug } = params;
-
-		const session = await getAuthSession();
 
 		// console.time('r/Slug');
 
@@ -49,9 +45,6 @@ const page = async ({ params }: PageProps) => {
 				)}
 			</>
 		);
-	} catch (error: any) {
-		console.log(error.message);
-	}
 };
 
 export default page;
