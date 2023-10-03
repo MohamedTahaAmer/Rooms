@@ -6,7 +6,7 @@ Built with the Next.js App Router, TypeScript & Tailwind
 
 # Dark Mode
 
-![Rooms Home Dark Mode](https://res.cloudinary.com/dqe9ksk0p/image/upload/v1696011029/Rooms/2023-09-29_21_05_22-Rooms_dkrvoe.jpg)
+![Rooms Home Dark Mode](https://res.cloudinary.com/dqe9ksk0p/image/upload/v1696293441/Rooms/aa_zyto3u.png)
 
 # Light Mode
 
