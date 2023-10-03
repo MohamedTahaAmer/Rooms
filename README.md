@@ -1,4 +1,4 @@
-# Welcome to <span style="color: #4300fd;">Rooms!</span> where you can share, discuss, and explore your interests with like-minded individuals.
+# Welcome to <span style="color: #fd00ec;">Rooms!</span> where you can share, discuss, and explore your interests with like-minded individuals.
 
 Built with the Next.js App Router, TypeScript & Tailwind
 
